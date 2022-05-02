@@ -8,10 +8,13 @@ import java.util.Objects;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.oidc.OidcIdToken;
+import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import com.kot.horizon.service.user.UserFullNameUtil;
 
-public class UserPrincipal implements OAuth2User, UserDetails {
+public class UserPrincipal implements UserDetails, OidcUser {
 
 	private static final long serialVersionUID = 1L;
 	private transient UserEntity userEntity;
@@ -23,6 +26,13 @@ public class UserPrincipal implements OAuth2User, UserDetails {
 	private String password;
 	private Collection<? extends GrantedAuthority> authorities;
 	private Map<String, Object> attributes;
+
+	private OidcUserInfo userInfo;
+
+	private OidcIdToken idToken;
+
+	public UserPrincipal() {
+	}
 
 	public UserPrincipal(UserEntity userEntity, String email, String socialId, String firstName, String lastName, Collection<? extends GrantedAuthority> authorities) {
 		this.userEntity = userEntity;
@@ -132,5 +142,20 @@ public class UserPrincipal implements OAuth2User, UserDetails {
 	@Override
 	public int hashCode() {
 		return Objects.hash(userEntity, socialId, firstName, lastName, authorities);
+	}
+
+	@Override
+	public Map<String, Object> getClaims() {
+		return this.attributes;
+	}
+
+	@Override
+	public OidcUserInfo getUserInfo() {
+		return this.userInfo;
+	}
+
+	@Override
+	public OidcIdToken getIdToken() {
+		return this.idToken;
 	}
 }
