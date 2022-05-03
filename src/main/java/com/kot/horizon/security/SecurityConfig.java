@@ -1,10 +1,12 @@
 package com.kot.horizon.security;
 
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
+
 import java.util.Arrays;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,15 +16,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.endpoint.DefaultAuthorizationCodeTokenResponseClient;
 import org.springframework.security.oauth2.client.endpoint.OAuth2AccessTokenResponseClient;
 import org.springframework.security.oauth2.client.endpoint.OAuth2AuthorizationCodeGrantRequest;
 import org.springframework.security.oauth2.client.http.OAuth2ErrorResponseErrorHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.client.RestTemplate;
-
 import com.kot.horizon.api.v1.auth.AuthenticationController;
 import com.kot.horizon.api.v1.photo.PhotoController;
+import com.kot.horizon.api.v1.registration.controller.RegistrationController;
 import com.kot.horizon.api.v1.user.UserController;
 import com.kot.horizon.security.jwt.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.kot.horizon.security.jwt.JwtAuthenticationProvider;
@@ -45,7 +48,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private CustomUserDetailsService userDetailsService;
 	@Autowired
 	private JwtAuthenticationProvider jwtAuthenticationProvider;
-	private String idUrl = "/{id}";
+
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	private static final String[] PUBLIC_API_POST = {
+			RegistrationController.BASE_URL,
+			RegistrationController.BASE_URL + "/signup"
+	};
+
+	private static final String[] PUBLIC_API_GET = {
+			UserController.BASE_URL,
+			UserController.BASE_URL + "/{id}",
+			UserController.BASE_URL + "/current",
+			PhotoController.BASE_URL + "/{id}",
+			PhotoController.BASE_URL
+	};
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -74,13 +91,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/login", AuthenticationController.BASE_URL)
 				.permitAll()
-				.antMatchers(HttpMethod.GET,
-						UserController.BASE_URL,
-						UserController.BASE_URL + idUrl,
-						UserController.BASE_URL + "/current",
-						PhotoController.BASE_URL + idUrl,
-						PhotoController.BASE_URL)
-				.permitAll()
+				.antMatchers(GET, PUBLIC_API_GET).permitAll()
+				.antMatchers(POST, PUBLIC_API_POST).permitAll()
 				.antMatchers("/v2/api-docs/**",
 						"/swagger-ui.html",
 						"/swagger-resources/**",
@@ -106,5 +118,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		restTemplate.setErrorHandler(new OAuth2ErrorResponseErrorHandler());
 		client.setRestOperations(restTemplate);
 		return client;
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder()
+	{
+		return new BCryptPasswordEncoder();
 	}
 }

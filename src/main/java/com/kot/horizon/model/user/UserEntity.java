@@ -24,8 +24,7 @@ public class UserEntity implements BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "social_id", nullable = false, unique = true)
-	@NotBlank
+	@Column(name = "social_id", unique = true)
 	private String socialId;
 
 	@Column(name = "last_name", nullable = false)
@@ -47,7 +46,7 @@ public class UserEntity implements BaseEntity {
 	private UserRole role;
 
 	@Column(name = "locale", nullable = false)
-//	@NotNull
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Language language;
 
@@ -61,6 +60,8 @@ public class UserEntity implements BaseEntity {
 	@NotBlank
 	@Column(name = "social_type")
 	private String socialType;
+
+	private String password;
 
 	public Long getId() {
 		return id;
@@ -140,6 +141,14 @@ public class UserEntity implements BaseEntity {
 
 	public void setSocialType(String socialType) {
 		this.socialType = socialType;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override

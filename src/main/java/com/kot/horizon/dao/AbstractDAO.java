@@ -84,7 +84,6 @@ public abstract class AbstractDAO<Entity extends BaseEntity,
 
 	@Transactional
 	public Entity save(Entity entity) {
-		System.out.println("entity >>> " + entity.getClass());
 		return repository.save(entity);
 	}
 

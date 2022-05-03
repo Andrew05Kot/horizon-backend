@@ -14,6 +14,7 @@ import com.kot.horizon.dao.user.UserDAO;
 import com.kot.horizon.exception.LocalizedException;
 import com.kot.horizon.model.photo.PhotoEntity;
 import com.kot.horizon.model.photo.ShortPhotoEntity;
+import com.kot.horizon.model.user.Language;
 import com.kot.horizon.model.user.UserEntity;
 import com.kot.horizon.model.user.UserPermission;
 import com.kot.horizon.model.user.UserRole;
@@ -38,6 +39,12 @@ public class UserService extends AbstractService<UserEntity> {
 	@Override
 	protected AbstractDAO<UserEntity, UserRepository> getDAO() {
 		return userDAO;
+	}
+
+	public UserEntity registerUser(UserEntity user) {
+		user.setLanguage(Language.UK);
+		user.setSocialType("local");
+		return userDAO.save(user);
 	}
 
 	public UserEntity getUserBySocialId(String facebookId) {

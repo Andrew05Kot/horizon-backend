@@ -10,6 +10,8 @@ public class SwaggerInfo {
 
 	public static final String USER_API = "User API";
 
+	public static final String REGISTRATION_API = "Registration API";
+
 	public static final Set<String> CONSUMES_AND_PRODUCES = Sets.newHashSet(MediaType.APPLICATION_JSON_VALUE);
 
 	public static final String API_VERSION_V1 = "1.0";
