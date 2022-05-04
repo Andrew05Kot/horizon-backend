@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.server.ResponseStatusException;
-import com.kot.horizon.exception.LocalizedException;
+import com.kot.horizon.common.exception.LocalizedException;
 import com.kot.horizon.localization.LocalizationService;
 
 @ControllerAdvice

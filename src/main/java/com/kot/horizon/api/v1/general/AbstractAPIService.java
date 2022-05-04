@@ -13,13 +13,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
-import com.kot.horizon.api.filtering.EntityFilterSpecificationsBuilder;
-import com.kot.horizon.api.filtering.FilterableProperty;
-import com.kot.horizon.api.searching.SearchCriteria;
-import com.kot.horizon.api.searching.SearchCriteriaParser;
+import com.kot.horizon.common.filtering.EntityFilterSpecificationsBuilder;
+import com.kot.horizon.common.filtering.FilterableProperty;
+import com.kot.horizon.common.filtering.SearchCriteria;
+import com.kot.horizon.common.filtering.SearchCriteriaParser;
 import com.kot.horizon.api.v1.ResponsePage;
-import com.kot.horizon.model.BaseEntity;
-import com.kot.horizon.service.AbstractService;
+import com.kot.horizon.architecture.model.BaseEntity;
+import com.kot.horizon.architecture.service.AbstractService;
 
 public abstract class AbstractAPIService<
 			Entity extends BaseEntity,

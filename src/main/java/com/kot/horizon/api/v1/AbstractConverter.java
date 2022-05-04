@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.kot.horizon.api.v1.general.AbstractResponse;
-import com.kot.horizon.model.BaseEntity;
-import com.kot.horizon.model.user.UserEntity;
-import com.kot.horizon.service.user.CurrentUserService;
+import com.kot.horizon.architecture.model.BaseEntity;
+import com.kot.horizon.user.model.UserEntity;
+import com.kot.horizon.user.service.CurrentUserService;
 
 public abstract class AbstractConverter<Entity extends BaseEntity,
                                     Response extends AbstractResponse> {

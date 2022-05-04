@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.kot.horizon.model.user.Language;
-import com.kot.horizon.service.user.CurrentUserService;
+import com.kot.horizon.user.model.Language;
+import com.kot.horizon.user.service.CurrentUserService;
 
 @Service
 public class LocalizationService {

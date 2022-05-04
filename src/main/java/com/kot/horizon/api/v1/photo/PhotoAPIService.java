@@ -12,8 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
-import com.kot.horizon.model.photo.PhotoEntity;
-import com.kot.horizon.service.photo.PhotoService;
+import com.kot.horizon.photo.model.PhotoEntity;
+import com.kot.horizon.photo.service.PhotoService;
 
 @Service
 public class PhotoAPIService {

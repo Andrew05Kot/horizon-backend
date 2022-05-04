@@ -6,14 +6,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.kot.horizon.api.filtering.EntityFilterSpecificationsBuilder;
-import com.kot.horizon.api.filtering.user.UserSpecificationsBuilder;
+import com.kot.horizon.common.filtering.EntityFilterSpecificationsBuilder;
+import com.kot.horizon.user.specification.UserSpecificationsBuilder;
 import com.kot.horizon.api.v1.general.AbstractAPIService;
-import com.kot.horizon.model.photo.ShortPhotoEntity;
-import com.kot.horizon.model.user.UserEntity;
-import com.kot.horizon.service.photo.PhotoService;
-import com.kot.horizon.service.user.CurrentUserService;
-import com.kot.horizon.service.user.UserService;
+import com.kot.horizon.photo.model.ShortPhotoEntity;
+import com.kot.horizon.user.model.UserEntity;
+import com.kot.horizon.photo.service.PhotoService;
+import com.kot.horizon.user.service.CurrentUserService;
+import com.kot.horizon.user.service.UserService;
 
 @Service
 public class UserAPIService extends AbstractAPIService<UserEntity, User, User, UserService> {

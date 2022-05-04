@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.kot.horizon.api.ServiceAPIUrl;
-import com.kot.horizon.config.SwaggerInfo;
+import com.kot.horizon.api.v1.ServiceAPIUrl;
+import com.kot.horizon.common.config.SwaggerInfo;
 
 @Api(tags = SwaggerInfo.USER_API)
 @RestController

@@ -7,8 +7,8 @@ import io.swagger.annotations.ApiModelProperty;
 import com.kot.horizon.api.v1.general.AbstractRequest;
 import com.kot.horizon.api.v1.general.AbstractResponse;
 import com.kot.horizon.api.v1.photo.Photo;
-import com.kot.horizon.model.user.Language;
-import com.kot.horizon.model.user.UserRole;
+import com.kot.horizon.user.model.Language;
+import com.kot.horizon.user.model.UserRole;
 
 public class User implements AbstractRequest, AbstractResponse {
 	

@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
-import com.kot.horizon.model.user.UserEntity;
+import com.kot.horizon.user.model.UserEntity;
 import com.kot.horizon.security.jwt.JwtService;
-import com.kot.horizon.service.user.UserService;
+import com.kot.horizon.user.service.UserService;
 
 @Service
 public class AuthenticationAPIService {

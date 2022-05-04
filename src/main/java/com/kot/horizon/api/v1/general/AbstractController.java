@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.kot.horizon.api.v1.ResponsePage;
-import com.kot.horizon.model.BaseEntity;
-import com.kot.horizon.service.AbstractService;
+import com.kot.horizon.architecture.model.BaseEntity;
+import com.kot.horizon.architecture.service.AbstractService;
 
 @Validated
 public abstract class AbstractController<

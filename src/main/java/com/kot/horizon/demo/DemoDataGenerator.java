@@ -1,6 +1,6 @@
 //package com.kot.horizon.demo;
 //
-//import static com.kot.horizon.model.user.Language.UK;
+//import static com.kot.horizon.user.model.Language.UK;
 //
 //import java.io.IOException;
 //import java.io.InputStream;
@@ -11,16 +11,16 @@
 //import org.springframework.context.annotation.Profile;
 //import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.stereotype.Service;
-//import com.kot.horizon.model.photo.PhotoEntity;
-//import com.kot.horizon.model.photo.ShortPhotoEntity;
-//import com.kot.horizon.model.user.UserEntity;
-//import com.kot.horizon.model.user.UserPrincipal;
-//import com.kot.horizon.model.user.UserRole;
+//import com.kot.horizon.photo.model.PhotoEntity;
+//import com.kot.horizon.photo.model.ShortPhotoEntity;
+//import com.kot.horizon.user.model.UserEntity;
+//import com.kot.horizon.user.model.UserPrincipal;
+//import com.kot.horizon.user.model.UserRole;
 //import com.kot.horizon.security.SocialTypes;
 //import com.kot.horizon.security.jwt.JwtAuthenticationToken;
 //import com.kot.horizon.security.jwt.JwtService;
 //import com.kot.horizon.service.datetime.DateTimeService;
-//import com.kot.horizon.service.photo.PhotoService;
+//import com.kot.horizon.photo.service.PhotoService;
 //import com.kot.horizon.service.user.UserService;
 //
 //@Profile({"dev"})

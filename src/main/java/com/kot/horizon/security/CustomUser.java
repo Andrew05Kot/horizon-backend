@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
-import com.kot.horizon.model.user.UserEntity;
+import com.kot.horizon.user.model.UserEntity;
 
 public class CustomUser extends DefaultOAuth2User {
 

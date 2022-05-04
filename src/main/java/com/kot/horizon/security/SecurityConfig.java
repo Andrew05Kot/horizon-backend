@@ -25,7 +25,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.client.RestTemplate;
 import com.kot.horizon.api.v1.auth.AuthenticationController;
 import com.kot.horizon.api.v1.photo.PhotoController;
-import com.kot.horizon.api.v1.registration.controller.RegistrationController;
 import com.kot.horizon.api.v1.user.UserController;
 import com.kot.horizon.security.jwt.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.kot.horizon.security.jwt.JwtAuthenticationProvider;
@@ -52,8 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	private static final String[] PUBLIC_API_POST = {
-			RegistrationController.BASE_URL,
-			RegistrationController.BASE_URL + "/signup"
 	};
 
 	private static final String[] PUBLIC_API_GET = {

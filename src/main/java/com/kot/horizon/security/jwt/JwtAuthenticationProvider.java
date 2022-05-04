@@ -8,7 +8,7 @@ import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import com.nimbusds.jwt.JWTClaimsSet;
-import com.kot.horizon.model.user.UserPrincipal;
+import com.kot.horizon.user.model.UserPrincipal;
 import com.kot.horizon.security.CustomUserDetailsService;
 
 @Component

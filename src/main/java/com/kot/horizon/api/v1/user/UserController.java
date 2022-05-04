@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.kot.horizon.api.ServiceAPIUrl;
+import com.kot.horizon.api.v1.ServiceAPIUrl;
 import com.kot.horizon.api.v1.general.AbstractController;
-import com.kot.horizon.config.SwaggerInfo;
-import com.kot.horizon.model.user.UserEntity;
-import com.kot.horizon.service.user.UserService;
+import com.kot.horizon.common.config.SwaggerInfo;
+import com.kot.horizon.user.model.UserEntity;
+import com.kot.horizon.user.service.UserService;
 
 @Api(tags = SwaggerInfo.USER_API)
 @RestController

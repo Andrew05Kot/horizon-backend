@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import com.kot.horizon.model.user.UserEntity;
-import com.kot.horizon.model.user.UserPrincipal;
-import com.kot.horizon.repository.user.UserRepository;
+import com.kot.horizon.user.model.UserEntity;
+import com.kot.horizon.user.model.UserPrincipal;
+import com.kot.horizon.user.repository.UserRepository;
 
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
@@ -15,7 +15,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
-
 
 	@Override
 	public UserPrincipal loadUserByUsername(String socialId) {
