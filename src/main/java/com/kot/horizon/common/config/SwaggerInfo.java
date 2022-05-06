@@ -9,6 +9,7 @@ public class SwaggerInfo {
     private SwaggerInfo() {}
 
 	public static final String USER_API = "User API";
+	public static final String TOUR_API = "Tour API";
 
 	public static final String REGISTRATION_API = "Registration API";
 
