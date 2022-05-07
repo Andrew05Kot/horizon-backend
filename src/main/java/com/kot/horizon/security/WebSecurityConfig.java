@@ -25,15 +25,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.client.RestTemplate;
 import com.kot.horizon.api.v1.auth.AuthenticationController;
 import com.kot.horizon.api.v1.photo.PhotoController;
+import com.kot.horizon.api.v1.tour.controller.TourController;
 import com.kot.horizon.api.v1.user.UserController;
 import com.kot.horizon.security.jwt.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.kot.horizon.security.jwt.JwtAuthenticationProvider;
 import com.kot.horizon.security.jwt.JwtTokenAuthenticationFilter;
 import com.kot.horizon.security.jwt.OAuth2AuthenticationFailureHandler;
 import com.kot.horizon.security.jwt.OAuth2AuthenticationSuccessHandler;
+import com.kot.horizon.security.oauth2.CustomOAuth2AccessTokenResponseHttpMessageConverter;
+import com.kot.horizon.security.oauth2.CustomOAuth2UserService;
 
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private OAuth2AuthenticationSuccessHandler authenticationSuccessHandler;
@@ -58,7 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			UserController.BASE_URL + "/{id}",
 			UserController.BASE_URL + "/current",
 			PhotoController.BASE_URL + "/{id}",
-			PhotoController.BASE_URL
+			PhotoController.BASE_URL,
+			TourController.BASE_URL
 	};
 
 	@Override

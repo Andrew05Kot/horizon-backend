@@ -18,7 +18,6 @@ public class TourRequest implements AbstractRequest {
 	private String name;
 
 	@ApiModelProperty(notes = "The information about the tour", example = "Best trip to sea..")
-//	@Max(10000)
 	@NotBlank
 	private String description;
 

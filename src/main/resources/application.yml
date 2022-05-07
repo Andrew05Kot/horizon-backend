@@ -7,6 +7,10 @@ server:
     key-store: keystore.p12
   port: '8080'
 spring:
+  config:
+    use-legacy-processing: true
+  profiles:
+    active: "@spring.profiles.active@"
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -28,9 +32,6 @@ spring:
         provider:
           facebook:
             user-info-uri: https://graph.facebook.com/me?fields=id,name,email
-  config:
-    activate:
-      on-profile: h2
 app:
   auth:
     tokenExpirationMsec: '864000000'

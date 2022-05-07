@@ -29,6 +29,8 @@ public class SwaggerInfo {
 
 	public static final String USER_CONTROLLER_INFO = "The controller for user operations";
 
+	public static final String TOUR_CONTROLLER_INFO = "The controller for tour operations";
+
 	public static final String PHOTO_API = "Photo API";
 
 }

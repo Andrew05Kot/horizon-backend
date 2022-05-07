@@ -31,7 +31,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 @Import(BeanValidatorPluginsConfiguration.class)
-@Profile("!( prod | ( test & !swagger )")
 public class SwaggerConfig {
 
 	public static final String AUTHORIZATION_HEADER = "Authorization";
@@ -53,6 +52,7 @@ public class SwaggerConfig {
 				.produces(SwaggerInfo.CONSUMES_AND_PRODUCES)
 				.consumes(SwaggerInfo.CONSUMES_AND_PRODUCES)
 				.tags(new Tag(SwaggerInfo.USER_API, SwaggerInfo.USER_CONTROLLER_INFO))
+				.tags(new Tag(SwaggerInfo.TOUR_API, SwaggerInfo.TOUR_CONTROLLER_INFO))
 				.securityContexts(securityContexts())
 				.securitySchemes(securitySchemes());
 	}

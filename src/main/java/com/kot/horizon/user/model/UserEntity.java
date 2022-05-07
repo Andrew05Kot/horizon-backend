@@ -38,7 +38,7 @@ public class UserEntity implements BaseEntity {
 	@Email
 	private String email;
 
-	@Column(name = "birthDate")
+	@Column(name = "birth_date")
 	private LocalDate birthDate;
 
 	@Column(name = "role", nullable = false)
@@ -53,15 +53,9 @@ public class UserEntity implements BaseEntity {
 	@Column(name = "image_url")
 	private String imageUrl;
 
-//	@OneToOne
-//	@JoinColumn(  name = "photo_id" )
-//	private ShortPhotoEntity photo;
-
 	@NotBlank
 	@Column(name = "social_type")
 	private String socialType;
-
-	private String password;
 
 	public Long getId() {
 		return id;
@@ -141,14 +135,6 @@ public class UserEntity implements BaseEntity {
 
 	public void setSocialType(String socialType) {
 		this.socialType = socialType;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	@Override
