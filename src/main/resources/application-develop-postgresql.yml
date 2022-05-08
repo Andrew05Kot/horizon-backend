@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/horizon
+    username: horizon_owner
+    password: TZfOZq5Id6qEV%WQRVmmgU7eniWv49EmNply27
+  profiles:
+    include:
+      - postgresql

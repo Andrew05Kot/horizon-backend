@@ -1,4 +1,4 @@
-package com.kot.horizon.security;
+package com.kot.horizon.security.oauth2;
 
 import java.util.Arrays;
 import java.util.Collections;
