@@ -56,6 +56,10 @@ public abstract class AbstractService<Entity extends BaseEntity> {
 		return getDAO().findById(id);
 	}
 
+	public Entity findOne(Specification<Entity> filter) {
+		return getDAO().findOne(filter);
+	}
+
 	protected void validate(Entity entity) {
 		Set<ConstraintViolation<Entity>> violations = VALIDATOR.validate(entity);
 		if (!violations.isEmpty()) {

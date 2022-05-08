@@ -1,3 +1,11 @@
+com:
+  kot:
+    horizon:
+      image:
+        minSideSize: 300
+        formats: image/png,image/jpeg
+        maxImageSize: 5242880 # equals to 5 * 1024 * 1024
+        folderName: /images/
 server:
   ssl:
     keyAlias: tomcat
