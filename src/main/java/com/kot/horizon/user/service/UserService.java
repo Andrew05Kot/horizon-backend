@@ -63,14 +63,14 @@ public class UserService extends AbstractService<UserEntity> {
 	}
 
 	@Override
-	public void update(UserEntity entityForUpdate) {
+	public UserEntity update(UserEntity entityForUpdate) {
 		UserEntity currentUser = currentUserService.getCurrentUser();
 		if (!(currentUserService.isAdministrator(currentUser) || currentUser.getId().equals(entityForUpdate.getId()))) {
 			throw new AccessDeniedException("You do not have permission to update");
 		}
 		UserEntity oldUser = findById(entityForUpdate.getId());
 		checkImportantFields(oldUser, entityForUpdate);
-		super.update(entityForUpdate);
+		return super.update(entityForUpdate);
 	}
 
 

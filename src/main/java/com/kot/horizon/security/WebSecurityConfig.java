@@ -55,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	private static final String[] PUBLIC_API_POST = {
+			TourController.BASE_URL + "/{id}" + "/images",
 	};
 
 	private static final String[] PUBLIC_API_GET = {
