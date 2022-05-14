@@ -1,5 +1,6 @@
 package com.kot.horizon.api.v1.user;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -36,10 +37,10 @@ public class UserAPIService extends AbstractAPIService<UserEntity, User, User, U
 	}
 
 	@Override
-	public void update(Long id, User request) {
+	public User update(Long id, User request) {
 		UserEntity userEntity = getValidEntityById(id);
 		copyProperties(request, userEntity);
-		service.update(userEntity);
+		return userConverter.getResponseBean(service.update(userEntity), new ArrayList<>());
 	}
 
 	public List<User> convertEntitiesListToDto(List<UserEntity> entities) {
