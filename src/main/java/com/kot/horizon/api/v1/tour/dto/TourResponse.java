@@ -22,7 +22,7 @@ public class TourResponse implements AbstractResponse {
 	private int rate;
 
 	@ApiModelProperty(notes= "Images of tour")
-	private List<String> images;
+	private List<ImageResponse> images;
 
 	@Override
 	public Long getId() {
@@ -57,11 +57,11 @@ public class TourResponse implements AbstractResponse {
 		this.rate = rate;
 	}
 
-	public List<String> getImages() {
+	public List<ImageResponse> getImages() {
 		return images;
 	}
 
-	public void setImages(List<String> images) {
+	public void setImages(List<ImageResponse> images) {
 		this.images = images;
 	}
 
