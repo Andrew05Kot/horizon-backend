@@ -26,12 +26,12 @@ public abstract class AbstractService<Entity extends BaseEntity> {
 		return getDAO().save(entity);
 	}
 
-	public void update(Entity entity) {
+	public Entity update(Entity entity) {
 		validate(entity);
 		if( getDAO().findByIdForModifying( entity ) == null ){
 			throw new AccessDeniedException("You don`t have permission!");
 		}
-		getDAO().save(entity);
+		return getDAO().save(entity);
 	}
 
 	public void delete(Long id) {
@@ -54,6 +54,10 @@ public abstract class AbstractService<Entity extends BaseEntity> {
 
 	public Entity findById(Long id) {
 		return getDAO().findById(id);
+	}
+
+	public Entity findOne(Specification<Entity> filter) {
+		return getDAO().findOne(filter);
 	}
 
 	protected void validate(Entity entity) {

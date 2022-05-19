@@ -24,6 +24,7 @@ import org.springframework.security.oauth2.client.http.OAuth2ErrorResponseErrorH
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.client.RestTemplate;
 import com.kot.horizon.api.v1.auth.AuthenticationController;
+import com.kot.horizon.api.v1.image.ImageController;
 import com.kot.horizon.api.v1.photo.PhotoController;
 import com.kot.horizon.api.v1.tour.controller.TourController;
 import com.kot.horizon.api.v1.user.UserController;
@@ -54,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	private static final String[] PUBLIC_API_POST = {
+			TourController.BASE_URL + "/{id}" + "/images",
 	};
 
 	private static final String[] PUBLIC_API_GET = {
@@ -62,7 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			UserController.BASE_URL + "/current",
 			PhotoController.BASE_URL + "/{id}",
 			PhotoController.BASE_URL,
-			TourController.BASE_URL
+			TourController.BASE_URL,
+			ImageController.BASE_URL + "/{name}"
 	};
 
 	@Override

@@ -65,8 +65,8 @@ public abstract class AbstractController<
 
 	@ApiOperation(value = "Update a specific item, based on the ID")
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void update( @PathVariable Long id, @RequestBody @Valid RequestBean request ) {
-		apiService.update(id, request);
+	public ResponseBean update( @PathVariable Long id, @RequestBody @Valid RequestBean request ) {
+		return apiService.update(id, request);
 	}
 	
 	@ApiOperation(value = "Patch a specific item, based on the ID")

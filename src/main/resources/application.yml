@@ -1,3 +1,11 @@
+com:
+  kot:
+    horizon:
+      image:
+        minSideSize: 300
+        formats: image/png,image/jpeg
+        maxImageSize: 5242880 # equals to 5 * 1024 * 1024
+        folderName: /images/
 server:
   ssl:
     keyAlias: tomcat
@@ -16,6 +24,10 @@ spring:
       matching-strategy: ant_path_matcher
   main:
     allow-circular-references: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   security:
     oauth2:
       client:

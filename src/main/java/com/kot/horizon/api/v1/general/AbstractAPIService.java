@@ -44,10 +44,10 @@ public abstract class AbstractAPIService<
 		return convertToResponseBean(createdEntity, Optional.empty());
 	}
 
-	public void update(Long id, RequestBean request) {
+	public ResponseBean update(Long id, RequestBean request) {
 		Entity entity = getValidEntityById(id);
 		copyProperties(request, entity);
-		service.update(entity);
+		return convertToResponseBean(service.update(entity), Optional.empty());
 	}
 
 	public ResponseBean findById(Long id, Optional<String> expand) {

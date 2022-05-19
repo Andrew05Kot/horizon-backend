@@ -1,15 +1,21 @@
 package com.kot.horizon.tour.model;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.architecture.model.BaseEntity;
+import com.kot.horizon.image.model.ImageEntity;
 
 @Entity
 @Table(name = "tour")
@@ -29,6 +35,12 @@ public class TourEntity implements BaseEntity {
 
 	@Column(name = "rate", nullable = false)
 	private int rate;
+
+	@OneToMany
+	@JoinTable( name = "tour_image",
+			joinColumns = @JoinColumn(name = "tour_id", foreignKey = @ForeignKey(name = "fk_tour_image_to_tour")),
+			inverseJoinColumns = @JoinColumn(name = "image_id", foreignKey = @ForeignKey(name = "fk_tour_image_to_image")))
+	private List<ImageEntity> images;
 
 	@Override
 	public Long getId() {
@@ -61,6 +73,14 @@ public class TourEntity implements BaseEntity {
 
 	public void setRate(int rate) {
 		this.rate = rate;
+	}
+
+	public List<ImageEntity> getImages() {
+		return images;
+	}
+
+	public void setImages(List<ImageEntity> images) {
+		this.images = images;
 	}
 
 	@Override

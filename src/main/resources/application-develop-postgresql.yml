@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://127.0.0.1:5432/horizon
     username: horizon_owner
-    password: TZfOZq5Id6qEV%WQRVmmgU7eniWv49EmNply27
+    password: ergm3059h34gwgr0j304qwg1q34gqwg
   profiles:
     include:
       - postgresql

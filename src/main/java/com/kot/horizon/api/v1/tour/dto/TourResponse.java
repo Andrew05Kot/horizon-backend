@@ -1,9 +1,11 @@
 package com.kot.horizon.api.v1.tour.dto;
 
+import java.util.List;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.api.v1.general.AbstractResponse;
+import com.kot.horizon.api.v1.image.ImageResponse;
 
 public class TourResponse implements AbstractResponse {
 
@@ -18,6 +20,9 @@ public class TourResponse implements AbstractResponse {
 
 	@ApiModelProperty(notes = "The rate of tour", example = "Best trip to sea..")
 	private int rate;
+
+	@ApiModelProperty(notes= "Images of tour")
+	private List<String> images;
 
 	@Override
 	public Long getId() {
@@ -52,6 +57,14 @@ public class TourResponse implements AbstractResponse {
 		this.rate = rate;
 	}
 
+	public List<String> getImages() {
+		return images;
+	}
+
+	public void setImages(List<String> images) {
+		this.images = images;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -65,6 +78,7 @@ public class TourResponse implements AbstractResponse {
 				.append(id, that.id)
 				.append(name, that.name)
 				.append(description, that.description)
+				.append(images, that.images)
 				.isEquals();
 	}
 
@@ -75,6 +89,7 @@ public class TourResponse implements AbstractResponse {
 				.append(name)
 				.append(description)
 				.append(rate)
+				.append(images)
 				.toHashCode();
 	}
 }
