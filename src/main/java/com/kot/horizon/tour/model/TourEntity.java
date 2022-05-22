@@ -1,6 +1,7 @@
 package com.kot.horizon.tour.model;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -10,11 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.architecture.model.BaseEntity;
+import com.kot.horizon.geodata.GeoDataEntity;
 import com.kot.horizon.image.model.ImageEntity;
 
 @Entity
@@ -41,6 +44,9 @@ public class TourEntity implements BaseEntity {
 			joinColumns = @JoinColumn(name = "tour_id", foreignKey = @ForeignKey(name = "fk_tour_image_to_tour")),
 			inverseJoinColumns = @JoinColumn(name = "image_id", foreignKey = @ForeignKey(name = "fk_tour_image_to_image")))
 	private List<ImageEntity> images;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private GeoDataEntity geoData;
 
 	@Override
 	public Long getId() {
@@ -83,6 +89,14 @@ public class TourEntity implements BaseEntity {
 		this.images = images;
 	}
 
+	public GeoDataEntity getGeoData() {
+		return geoData;
+	}
+
+	public void setGeoData(GeoDataEntity geoData) {
+		this.geoData = geoData;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -96,6 +110,7 @@ public class TourEntity implements BaseEntity {
 				.append(id, that.id)
 				.append(name, that.name)
 				.append(description, that.description)
+				.append(geoData, that.geoData)
 				.isEquals();
 	}
 
@@ -106,6 +121,7 @@ public class TourEntity implements BaseEntity {
 				.append(name)
 				.append(description)
 				.append(rate)
+				.append(geoData)
 				.toHashCode();
 	}
 }

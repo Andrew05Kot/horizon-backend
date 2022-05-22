@@ -4,8 +4,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.kot.horizon.api.v1.AbstractConverter;
-import com.kot.horizon.api.v1.photo.Photo;
-import com.kot.horizon.photo.model.ShortPhotoEntity;
 import com.kot.horizon.user.model.UserEntity;
 import com.kot.horizon.user.service.UserService;
 
@@ -55,12 +53,5 @@ public class UserConverter extends AbstractConverter<UserEntity, User> {
 	@Override
 	protected void expandResponse(User response, UserEntity entity, List<String> entitiesToExpand) {
 		// TODO nothing to do, because user doesn`t have expand entities
-	}
-
-	private Photo getPhoto(ShortPhotoEntity userPhotoEntity) {
-		Photo photo = new Photo();
-		photo.setId(userPhotoEntity.getId());
-		photo.setMimeType(userPhotoEntity.getMimeType());
-		return photo;
 	}
 }

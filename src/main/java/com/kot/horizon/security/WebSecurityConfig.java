@@ -25,7 +25,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.client.RestTemplate;
 import com.kot.horizon.api.v1.auth.AuthenticationController;
 import com.kot.horizon.api.v1.image.ImageController;
-import com.kot.horizon.api.v1.photo.PhotoController;
 import com.kot.horizon.api.v1.tour.controller.TourController;
 import com.kot.horizon.api.v1.user.UserController;
 import com.kot.horizon.security.jwt.HttpCookieOAuth2AuthorizationRequestRepository;
@@ -62,8 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			UserController.BASE_URL,
 			UserController.BASE_URL + "/{id}",
 			UserController.BASE_URL + "/current",
-			PhotoController.BASE_URL + "/{id}",
-			PhotoController.BASE_URL,
 			TourController.BASE_URL,
 			ImageController.BASE_URL + "/{name}"
 	};

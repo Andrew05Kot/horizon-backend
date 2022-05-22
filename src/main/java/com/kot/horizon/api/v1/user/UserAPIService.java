@@ -7,14 +7,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.kot.horizon.common.filtering.EntityFilterSpecificationsBuilder;
-import com.kot.horizon.user.specification.UserSpecificationsBuilder;
 import com.kot.horizon.api.v1.general.AbstractAPIService;
-import com.kot.horizon.photo.model.ShortPhotoEntity;
+import com.kot.horizon.common.filtering.EntityFilterSpecificationsBuilder;
 import com.kot.horizon.user.model.UserEntity;
-import com.kot.horizon.photo.service.PhotoService;
 import com.kot.horizon.user.service.CurrentUserService;
 import com.kot.horizon.user.service.UserService;
+import com.kot.horizon.user.specification.UserSpecificationsBuilder;
 
 @Service
 public class UserAPIService extends AbstractAPIService<UserEntity, User, User, UserService> {
@@ -27,9 +25,6 @@ public class UserAPIService extends AbstractAPIService<UserEntity, User, User, U
 
 	@Autowired
 	private UserConverter userConverter;
-
-	@Autowired
-	private PhotoService photoService;
 
 	@Override
 	public User create(User request) {
@@ -70,10 +65,6 @@ public class UserAPIService extends AbstractAPIService<UserEntity, User, User, U
 			isNeededToUpdate = true;
 		}
 
-		if (addPhotoToEntity(request, userEntity)) {
-			isNeededToUpdate = true;
-		}
-
 		if (request.getRole() != null) {
 			userEntity.setRole(request.getRole());
 			isNeededToUpdate = true;
@@ -97,26 +88,11 @@ public class UserAPIService extends AbstractAPIService<UserEntity, User, User, U
 		entity.setEmail(request.getEmail());
 		entity.setLanguage(request.getLanguage());
 		entity.setRole(request.getRole());
-		if (request.getIsPhotoToDelete()) {
-		}
-		else {
-			addPhotoToEntity(request, entity);
-		}
 	}
 
 	@Override
 	protected User convertToResponseBean(UserEntity entity, Optional<String> expand) {
 		return userConverter.getResponseBean(entity, parseExpandField(expand));
-	}
-
-	private boolean addPhotoToEntity(User request, UserEntity entity) {
-		if (request.getPhoto() != null) {
-			ShortPhotoEntity photo = photoService.getCurrentUserShortPhoto(request.getPhoto().getId());
-			if (photo != null) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 }

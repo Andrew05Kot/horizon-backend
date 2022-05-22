@@ -3,6 +3,7 @@ package com.kot.horizon.api.v1.tour.mapper;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.kot.horizon.api.v1.geodata.GeoDataMapper;
 import com.kot.horizon.api.v1.image.ImageMapper;
 import com.kot.horizon.api.v1.tour.dto.TourRequest;
 import com.kot.horizon.api.v1.tour.dto.TourResponse;
@@ -13,12 +14,15 @@ public class TourMapper {
 
 	@Autowired
 	private ImageMapper imageMapper;
+	@Autowired
+	private GeoDataMapper geoDataMapper;
 
 	public TourEntity toEntity(TourRequest request) {
 		TourEntity entity = new TourEntity();
 		entity.setName(request.getName());
 		entity.setDescription(request.getDescription());
 		entity.setRate(request.getRate());
+		entity.setGeoData(geoDataMapper.toEntity(request.getGeoData()));
 		return entity;
 	}
 
@@ -30,6 +34,9 @@ public class TourMapper {
 		response.setRate(entity.getRate());
 		if (entity.getImages() != null) {
 			response.setImages(entity.getImages().stream().map(image -> imageMapper.toDto(image)).collect(Collectors.toList()));
+		}
+		if (entity.getGeoData() != null) {
+			response.setGeoData(geoDataMapper.toDto(entity.getGeoData()));
 		}
 		return response;
 	}

@@ -18,6 +18,9 @@ import com.kot.horizon.tour.model.TourEntity;
 public class TourService extends AbstractService<TourEntity> {
 
 	@Autowired
+	private TourDao dao;
+
+	@Autowired
 	private ImageService imageService;
 
 	public TourEntity createAndSaveImages(Long tourId, MultipartFile[] files) throws UnsupportedImageTypeException, WrongImageSizeException {
@@ -34,9 +37,6 @@ public class TourService extends AbstractService<TourEntity> {
 		images.add(image);
 		tour.setImages(images);
 	}
-
-	@Autowired
-	private TourDao dao;
 
 	@Override
 	protected AbstractDAO<TourEntity, ? extends BaseCRUDRepository<TourEntity>> getDAO() {
