@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.api.v1.general.AbstractResponse;
+import com.kot.horizon.api.v1.geodata.GeoDataResponse;
 import com.kot.horizon.api.v1.image.ImageResponse;
 
 public class TourResponse implements AbstractResponse {
@@ -23,6 +24,9 @@ public class TourResponse implements AbstractResponse {
 
 	@ApiModelProperty(notes= "Images of tour")
 	private List<ImageResponse> images;
+
+	@ApiModelProperty(notes = "Geographical information of the tour")
+	private GeoDataResponse geoData;
 
 	@Override
 	public Long getId() {
@@ -65,6 +69,14 @@ public class TourResponse implements AbstractResponse {
 		this.images = images;
 	}
 
+	public GeoDataResponse getGeoData() {
+		return geoData;
+	}
+
+	public void setGeoData(GeoDataResponse geoData) {
+		this.geoData = geoData;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -79,6 +91,7 @@ public class TourResponse implements AbstractResponse {
 				.append(name, that.name)
 				.append(description, that.description)
 				.append(images, that.images)
+				.append(geoData, that.geoData)
 				.isEquals();
 	}
 
@@ -90,6 +103,7 @@ public class TourResponse implements AbstractResponse {
 				.append(description)
 				.append(rate)
 				.append(images)
+				.append(geoData)
 				.toHashCode();
 	}
 }

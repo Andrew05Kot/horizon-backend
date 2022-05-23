@@ -6,12 +6,11 @@ import javax.validation.constraints.NotBlank;
 import io.swagger.annotations.ApiModelProperty;
 import com.kot.horizon.api.v1.general.AbstractRequest;
 import com.kot.horizon.api.v1.general.AbstractResponse;
-import com.kot.horizon.api.v1.photo.Photo;
 import com.kot.horizon.user.model.Language;
 import com.kot.horizon.user.model.UserRole;
 
 public class User implements AbstractRequest, AbstractResponse {
-	
+
 	@ApiModelProperty(notes = "The identification unique number of user", example = "1")
 	private Long id;
 
@@ -32,11 +31,8 @@ public class User implements AbstractRequest, AbstractResponse {
 	@ApiModelProperty(notes = "The email a user <br> filterable equals (=)  and contains(:), this field has been sorted")
 	private String email;
 
-	@ApiModelProperty(notes = "The language of user" , dataType = "string", allowableValues = "UK, EN")
+	@ApiModelProperty(notes = "The language of user", dataType = "string", allowableValues = "UK, EN")
 	private Language language;
-
-	@ApiModelProperty(notes = "The short version of table photo", required = false, example = "null")
-	private Photo photo;
 
 	@ApiModelProperty(notes = "Check is photo deleted")
 	private boolean isPhotoToDelete;
@@ -98,14 +94,6 @@ public class User implements AbstractRequest, AbstractResponse {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Photo getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(Photo photo) {
-		this.photo = photo;
 	}
 
 	public Language getLanguage() {

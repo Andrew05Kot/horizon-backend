@@ -13,6 +13,8 @@ public class SwaggerInfo {
 
 	public static final String IMAGE_API = "Image API";
 
+	public static final String GEO_DATA_API = "Geo Data API";
+
 	public static final String REGISTRATION_API = "Registration API";
 
 	public static final String AUTHENTICATION_API = "Authentication API";

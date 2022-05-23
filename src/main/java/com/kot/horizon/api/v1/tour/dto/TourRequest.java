@@ -3,10 +3,12 @@ package com.kot.horizon.api.v1.tour.dto;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.api.v1.general.AbstractRequest;
+import com.kot.horizon.api.v1.geodata.GeoDataRequest;
 
 public class TourRequest implements AbstractRequest {
 
@@ -25,6 +27,10 @@ public class TourRequest implements AbstractRequest {
 	@Min(0)
 	@Max(100)
 	private int rate;
+
+	@ApiModelProperty(notes = "Geographical information of the tour")
+	@NotNull
+	private GeoDataRequest geoData;
 
 	public Long getId() {
 		return id;
@@ -58,6 +64,14 @@ public class TourRequest implements AbstractRequest {
 		this.rate = rate;
 	}
 
+	public GeoDataRequest getGeoData() {
+		return geoData;
+	}
+
+	public void setGeoData(GeoDataRequest geoData) {
+		this.geoData = geoData;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -71,6 +85,7 @@ public class TourRequest implements AbstractRequest {
 				.append(id, that.id)
 				.append(name, that.name)
 				.append(description, that.description)
+				.append(geoData, that.geoData)
 				.isEquals();
 	}
 
@@ -81,6 +96,7 @@ public class TourRequest implements AbstractRequest {
 				.append(name)
 				.append(description)
 				.append(rate)
+				.append(geoData)
 				.toHashCode();
 	}
 }
