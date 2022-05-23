@@ -122,7 +122,7 @@ WITH (OIDS = FALSE)	TABLESPACE pg_default;
 ALTER TABLE tour_booking OWNER to horizon_owner;
 
 
-CREATE TABLE email_letter
+CREATE TABLE notification
 (
 	id bigserial NOT NULL,
 	recipient_id bigint NOT NULL,
@@ -132,10 +132,12 @@ CREATE TABLE email_letter
 		ON UPDATE NO ACTION
 		ON DELETE NO ACTION
 )
+WITH (OIDS = FALSE)	TABLESPACE pg_default;
+ALTER TABLE notification OWNER to horizon_owner;
 
 
-INSERT INTO api_user(id, social_id, email, phone_number, first_name, last_name, image_url, social_type, locale, role, birthday, about_me)
-VALUES (1, '102226743103588881193', 'kotygaandrey05@gmail.com', '+380974112881', 'Андрій', 'Котюга',
+INSERT INTO api_user(social_id, email, phone_number, first_name, last_name, image_url, social_type, locale, role, birthday, about_me)
+VALUES ('102226743103588881193', 'kotygaandrey05@gmail.com', '+380974112881', 'Андрій', 'Котюга',
         'https://lh3.googleusercontent.com/a-/AOh14GgvN0FFnpaLTo2LAsOIpe2csQ0ktPyP7s-G2TPx9A=s96-c',
         'google', 'UK', 'ROLE_USER', '2001-05-02',
         'Привіт, радий бачити в моєму профілі:) Я Андрій, родом з маленького села на Півночі Волині.' ||
@@ -143,50 +145,50 @@ VALUES (1, '102226743103588881193', 'kotygaandrey05@gmail.com', '+380974112881',
         'Можу провести самий прикольний тур по місту Чернівці, але й також зробити незабутні подорожі по Поліссі.' ||
         'Обожнюю гори, раду піду в гори за будь-якої нагоди');
 
-INSERT INTO api_user(id, social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
-VALUES (2, '2353453535345435', 'stefan@gmail.com', '+380996112881', 'Степанченко', 'Степан',
+INSERT INTO api_user(social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
+VALUES ('2353453535345435', 'stefan@gmail.com', '+380996112881', 'Степанченко', 'Степан',
         'google', 'UK', 'ROLE_USER', '2000-01-11',
         'Привіт, я супер недосвідчений турист і хочу поїхати будь куди');
 
-INSERT INTO api_user(id, social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
-VALUES (3, '32656547567634', 'kate@gmail.com', '+380932112881', 'Катеринко', 'Катя',
+INSERT INTO api_user(social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
+VALUES ('32656547567634', 'kate@gmail.com', '+380932112881', 'Катеринко', 'Катя',
         'facebook', 'UK', 'ROLE_USER', '1999-09-17',
         'Привіт, Я Катя. Я встигла побувати в багатьох ванільних місцях нашої країни. ' ||
         'Але мені цікаво побачити те про що не побачити в інтернеті і де не побували мільйон туристів.');
 
-INSERT INTO api_user(id, social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
-VALUES (4, '335566547567634', 'ivanna@gmail.com', '+380932112881', 'Іванова', 'Іванка',
+INSERT INTO api_user(social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
+VALUES ('335566547567634', 'ivanna@gmail.com', '+380932112881', 'Іванова', 'Іванка',
         'facebook', 'UK', 'ROLE_USER', '2002-05-07',
         'Ку! Я з вижниці! Моє місто хоч і маленьке, але на його околицях є що подивитися.' ||
         'А якщо хто має автомобіль зоб поїхати то можу і показати в області самі файні місця.' ||
         'А чи знали що в Чернівецькі області є водоспади?!)');
 
-INSERT INTO api_user(id, social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
-VALUES (5, '335647567634', 'pupkin@gmail.com', '+380662112882', 'Попов', 'Василь',
+INSERT INTO api_user(social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
+VALUES ('335647567634', 'pupkin@gmail.com', '+380662112882', 'Попов', 'Василь',
         'facebook', 'UK', 'ROLE_USER', '1998-01-01',
         'ЙО! Я програміст Вася. 24*7 працюю за компудахтером. Бажаю змінити смак кави воду з джерела тому спішу в подорож.');
 
-INSERT INTO api_user(id, social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
-VALUES (6, '111566547567634', 'pupkin@gmail.com', '+380662112882', 'Попов', 'Василь',
+INSERT INTO api_user(social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
+VALUES ('111566547567634', 'pupkin@gmail.com', '+380662112882', 'Попов', 'Василь',
         'facebook', 'UK', 'ROLE_USER', '1998-01-01',
         'ЙО! Я програміст Вася. 24*7 працюю за компудахтером. Бажаю змінити смак кави воду з джерела тому спішу в подорож.');
 
-INSERT INTO api_user(id, social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
-VALUES (7, '345346755567634', 'pupkin@gmail.com', '+390112112369', 'Tomac', 'Tom',
+INSERT INTO api_user(social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
+VALUES ('345346755567634', 'pupkin@gmail.com', '+390112112369', 'Tomac', 'Tom',
         'facebook', 'UK', 'ROLE_USER', '1992-02-02',
         'Hi, I love making new friends from different countries. ' ||
         'And I also love Ukraine very much. I will gladly show Ukraine through the eyes of foreigners.');
 
-INSERT INTO api_user(id, social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
-VALUES (8, '2654744556547', 'pupkin@gmail.com', '+390112112369', 'Гуцул', 'Іван',
+INSERT INTO api_user(social_id, email, phone_number, first_name, last_name, social_type, locale, role, birthday, about_me)
+VALUES ('2654744556547', 'pupkin@gmail.com', '+390112112369', 'Гуцул', 'Іван',
         'google', 'UK', 'ROLE_USER', '1975-03-02',
         'Я Гуцул Іван, та знаюсь на екстримі!');
 
-INSERT INTO geo_data(id, latitude, longitude, altitude, address_name)
-VALUES (1, 51.871705, 25.640747, 0, 'с. Сваловичі, Волинська область');
+INSERT INTO geo_data(latitude, longitude, altitude, address_name)
+VALUES (51.871705, 25.640747, 0, 'с. Сваловичі, Волинська область');
 
-INSERT INTO tour(id, name, description, rate, owner_id, geo_data_id)
-VALUES (1, 'Сваловичі',
+INSERT INTO tour(name, description, rate, owner_id, geo_data_id)
+VALUES ('Сваловичі',
         'Сваловичі називають Селом Вдів. Повязано це з тим що там живуть лиш жінки,' ||
         'Не жінки, а бабусі, якщо бути точним) Так ось. Село закинуте, тому там живе лиш 18 відв(' ||
         'Але це село насичене автентичністю та дикою природою.' ||
@@ -195,97 +197,97 @@ VALUES (1, 'Сваловичі',
         'А щоб роздивитись село та річку з висока лісники збудуваали 11-метрову вишку для обзору, адже територія належить національному парку.',
         99, 1, 1);
 
-INSERT INTO geo_data(id, latitude, longitude, altitude, address_name)
-VALUES (2, 51.773297, 25.576218, 0, 'с. Подкормілля, Волинська область');
+INSERT INTO geo_data(latitude, longitude, altitude, address_name)
+VALUES (51.773297, 25.576218, 0, 'с. Подкормілля, Волинська область');
 
-INSERT INTO tour(id, name, description, rate, owner_id, geo_data_id)
-VALUES (2, 'Каяк клуб на Стоході',
+INSERT INTO tour(name, description, rate, owner_id, geo_data_id)
+VALUES ('Каяк клуб на Стоході',
         'Ми створили клуб любителів плавати на байдарках.' ||
         'Нащі запливи це щось неймовірне. Цце атмосфера життя в палатках, нічного багаття,' ||
         'шуму хвиль, та безкінечних русел річки що створюють лабіринт',
         99, 1, 2);
 
-INSERT INTO geo_data(id, latitude, longitude, altitude, address_name)
-VALUES (3, 48.838890, 23.452871, 0, 'смт. Славське, Льівська область');
+INSERT INTO geo_data(latitude, longitude, altitude, address_name)
+VALUES (48.838890, 23.452871, 0, 'смт. Славське, Льівська область');
 
-INSERT INTO tour(id, name, description, rate, owner_id, geo_data_id)
-VALUES (3, 'Квадро тур Карпатами',
+INSERT INTO tour(name, description, rate, owner_id, geo_data_id)
+VALUES ('Квадро тур Карпатами',
         'Ми вирушимо о 8 ранку зі Славського по гірських хребтах багатьох гір до водоспаду Шипіт.' ||
         'Дорогою нас чекає вершина гори Захар Беркут, перетин річки та проїдемо перетин Львівської,' ||
         'Івано-Франківської та Закарпатської областей. Буде круто! Я вам обіцяю!',
         90, 8, 3);
 
-INSERT INTO geo_data(id, latitude, longitude, altitude, address_name)
-VALUES (4, 50.239081, 19.063106, 0, 'Katowice, Poland');
+INSERT INTO geo_data(latitude, longitude, altitude, address_name)
+VALUES (50.239081, 19.063106, 0, 'Katowice, Poland');
 
-INSERT INTO tour(id, name, description, rate, owner_id, geo_data_id)
-VALUES (4, 'Katowice: Private Polish Beer Tasting Tour',
+INSERT INTO tour(name, description, rate, owner_id, geo_data_id)
+VALUES ('Katowice: Private Polish Beer Tasting Tour',
         'We prepared with high precision and special for you a unique program of Beer Tasting tour. ' ||
         'During this tour you will try selected kind of beers, try delicious local appetizers and learn about ' ||
         'Polish history, customs and traditions. You will be led by licensed guide who has many-years of experience ' ||
         'and they are the best in all country! All of it will make this tour very unforgettable.',
         75, 7, 4);
 
-INSERT INTO geo_data(id, latitude, longitude, altitude, address_name)
-VALUES (5, 48.838890, 23.452871, 0, 'смт. Верховина, Івано-Франківська область');
+INSERT INTO geo_data(latitude, longitude, altitude, address_name)
+VALUES (8.838890, 23.452871, 0, 'смт. Верховина, Івано-Франківська область');
 
-INSERT INTO tour(id, name, description, rate, owner_id, geo_data_id)
-VALUES (5, 'Верховина',
+INSERT INTO tour(name, description, rate, owner_id, geo_data_id)
+VALUES ('Верховина',
         'Спокійна прогулянка Верховиною',
         95, 8, 5);
 
 
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (1, '1_sval.jpg', 'image/jpeg', '1_sval.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (2, '2_sval.png', 'image/png', '1_sval.png');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (3, '3_sval.jpg', 'image/jpeg', '1_sval.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (4, '4_sval.jpg', 'image/jpeg', '1_sval.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (5, '5_sval.jpg', 'image/jpeg', '1_sval.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (6, '6_sval.jpg', 'image/jpeg', '1_sval.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (7, '7_sval.jpg', 'image/jpeg', '1_sval.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (8, '8_sval.jpg', 'image/jpeg', '1_sval.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (9, '9_sval.jpg', 'image/jpeg', '1_sval.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('1_sval.jpg', 'image/jpeg', '1_sval.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('2_sval.png', 'image/png', '1_sval.png');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('3_sval.jpg', 'image/jpeg', '1_sval.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('4_sval.jpg', 'image/jpeg', '1_sval.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('5_sval.jpg', 'image/jpeg', '1_sval.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('6_sval.jpg', 'image/jpeg', '1_sval.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('7_sval.jpg', 'image/jpeg', '1_sval.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('8_sval.jpg', 'image/jpeg', '1_sval.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('9_sval.jpg', 'image/jpeg', '1_sval.jpg');
 
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (10, 'kayak_1.jpg', 'image/jpeg', 'kayak_1.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (11, 'kayak_2.jpg', 'image/jpeg', 'kayak_2.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (12, 'kayak_3.jpg', 'image/jpeg', 'kayak_3.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (13, 'kayak_4.jpg', 'image/jpeg', 'kayak_4.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (14, 'kayak_5.jpg', 'image/jpeg', 'kayak_5.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (15, 'kayak_6.jpg', 'image/jpeg', 'kayak_6.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('kayak_1.jpg', 'image/jpeg', 'kayak_1.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('kayak_2.jpg', 'image/jpeg', 'kayak_2.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('kayak_3.jpg', 'image/jpeg', 'kayak_3.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('kayak_4.jpg', 'image/jpeg', 'kayak_4.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('kayak_5.jpg', 'image/jpeg', 'kayak_5.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('kayak_6.jpg', 'image/jpeg', 'kayak_6.jpg');
 
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (16, 'kvadro_1.jpg', 'image/jpeg', 'kvadro_1.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (17, 'kvadro_2.jpg', 'image/jpeg', 'kvadro_2.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (18, 'kvadro_3.jpg', 'image/jpeg', 'kvadro_3.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('kvadro_1.jpg', 'image/jpeg', 'kvadro_1.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('kvadro_2.jpg', 'image/jpeg', 'kvadro_2.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('kvadro_3.jpg', 'image/jpeg', 'kvadro_3.jpg');
 
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (19, 'verh_1.jpg', 'image/jpeg', 'verh_1.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (20, 'verh_2.jpg', 'image/jpeg', 'verh_2.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (21, 'verh_3.jpg', 'image/jpeg', 'verh_3.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (22, 'verh_4.jpg', 'image/jpeg', 'verh_4.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (23, 'verh_5.jpg', 'image/jpeg', 'verh_5.jpg');
-INSERT INTO image(id, image_name, mime_type, original_name)
-VALUES (24, 'verh_6.jpg', 'image/jpeg', 'verh_6.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('verh_1.jpg', 'image/jpeg', 'verh_1.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('verh_2.jpg', 'image/jpeg', 'verh_2.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('verh_3.jpg', 'image/jpeg', 'verh_3.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('verh_4.jpg', 'image/jpeg', 'verh_4.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('verh_5.jpg', 'image/jpeg', 'verh_5.jpg');
+INSERT INTO image(image_name, mime_type, original_name)
+VALUES ('verh_6.jpg', 'image/jpeg', 'verh_6.jpg');
 
 INSERT INTO tour_image(tour_id, image_id) VALUES (1, 1);
 INSERT INTO tour_image(tour_id, image_id) VALUES (1, 2);
@@ -316,8 +318,8 @@ INSERT INTO tour_image(tour_id, image_id) VALUES (5, 23);
 INSERT INTO tour_image(tour_id, image_id) VALUES (5, 24);
 
 
-INSERT INTO booking(id, description, status, rate, tourist_id)
-VALUES (1, '', 'DONE', 90, 5);
+INSERT INTO booking(description, status, rate, tourist_id)
+VALUES ('', 'DONE', 90, 5);
 
-INSERT INTO booking(id, description, status, rate, tourist_id)
-VALUES (2, 'Thanks!', 'DONE', 100, 7);
+INSERT INTO booking(description, status, rate, tourist_id)
+VALUES ('Thanks!', 'DONE', 100, 7);

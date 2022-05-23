@@ -19,6 +19,8 @@ spring:
     use-legacy-processing: true
   profiles:
     active: "@spring.profiles.active@"
+    include:
+      - mail
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
