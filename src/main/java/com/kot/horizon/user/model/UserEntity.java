@@ -17,7 +17,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.architecture.model.BaseEntity;
 
 @Entity
-@Table(name = "horizon_user")
+@Table(name = "api_user")
 public class UserEntity implements BaseEntity {
 
 	@Id
