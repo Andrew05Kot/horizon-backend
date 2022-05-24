@@ -8,7 +8,7 @@ import com.kot.horizon.user.model.UserEntity;
 import com.kot.horizon.user.service.UserService;
 
 @Component
-public class UserConverter extends AbstractConverter<UserEntity, User> {
+public class UserMapper extends AbstractConverter<UserEntity, User> {
 
 	@Autowired
 	private UserService userService;

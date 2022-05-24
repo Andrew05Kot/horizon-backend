@@ -24,7 +24,7 @@ public class UserAPIService extends AbstractAPIService<UserEntity, User, User, U
 	private CurrentUserService currentUserService;
 
 	@Autowired
-	private UserConverter userConverter;
+	private UserMapper userConverter;
 
 	@Override
 	public User create(User request) {

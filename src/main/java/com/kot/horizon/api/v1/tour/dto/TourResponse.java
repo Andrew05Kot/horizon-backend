@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.api.v1.general.AbstractResponse;
 import com.kot.horizon.api.v1.geodata.GeoDataResponse;
 import com.kot.horizon.api.v1.image.ImageResponse;
+import com.kot.horizon.api.v1.user.User;
 
 public class TourResponse implements AbstractResponse {
 
@@ -27,6 +28,9 @@ public class TourResponse implements AbstractResponse {
 
 	@ApiModelProperty(notes = "Geographical information of the tour")
 	private GeoDataResponse geoData;
+
+	@ApiModelProperty(notes = "The user owner of the tour.")
+	private User owner;
 
 	@Override
 	public Long getId() {
@@ -77,6 +81,14 @@ public class TourResponse implements AbstractResponse {
 		this.geoData = geoData;
 	}
 
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -92,6 +104,7 @@ public class TourResponse implements AbstractResponse {
 				.append(description, that.description)
 				.append(images, that.images)
 				.append(geoData, that.geoData)
+				.append(owner, that.owner)
 				.isEquals();
 	}
 
@@ -104,6 +117,7 @@ public class TourResponse implements AbstractResponse {
 				.append(rate)
 				.append(images)
 				.append(geoData)
+				.append(owner)
 				.toHashCode();
 	}
 }

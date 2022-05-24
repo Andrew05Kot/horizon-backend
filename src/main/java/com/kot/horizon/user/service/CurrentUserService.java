@@ -39,9 +39,7 @@ public class CurrentUserService {
         if ( authentication != null ) {
             Object principal = authentication.getPrincipal();
             if ( principal instanceof UserPrincipal) {
-                UserEntity currentUser = ( ( UserPrincipal ) principal ).getUserEntity();
-                LOGGER.info("Current user is: {}", currentUser);
-                return currentUser;
+                return ( ( UserPrincipal ) principal ).getUserEntity();
             }
         }
         return null;

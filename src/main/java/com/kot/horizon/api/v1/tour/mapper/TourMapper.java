@@ -7,6 +7,7 @@ import com.kot.horizon.api.v1.geodata.GeoDataMapper;
 import com.kot.horizon.api.v1.image.ImageMapper;
 import com.kot.horizon.api.v1.tour.dto.TourRequest;
 import com.kot.horizon.api.v1.tour.dto.TourResponse;
+import com.kot.horizon.api.v1.user.UserMapper;
 import com.kot.horizon.tour.model.TourEntity;
 
 @Component
@@ -16,6 +17,9 @@ public class TourMapper {
 	private ImageMapper imageMapper;
 	@Autowired
 	private GeoDataMapper geoDataMapper;
+
+	@Autowired
+	private UserMapper userMapper;
 
 	public TourEntity toEntity(TourRequest request) {
 		TourEntity entity = new TourEntity();
@@ -38,6 +42,7 @@ public class TourMapper {
 		if (entity.getGeoData() != null) {
 			response.setGeoData(geoDataMapper.toDto(entity.getGeoData()));
 		}
+		response.setOwner(userMapper.getResponseBean(entity.getOwner(), null));
 		return response;
 	}
 
