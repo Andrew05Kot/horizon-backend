@@ -14,11 +14,12 @@ public class UserMapper extends AbstractConverter<UserEntity, User> {
 	private UserService userService;
 
 	@Override
-	protected User getPublicResponse(UserEntity userEntity) {
+	public User getPublicResponse(UserEntity userEntity) {
 		User user = new User();
 		user.setId(userEntity.getId());
 		user.setLastName(userEntity.getLastName());
 		user.setFirstName(userEntity.getFirstName());
+		user.setPhoneNumber(userEntity.getPhoneNumber());
 		return user;
 	}
 

@@ -38,6 +38,10 @@ public class UserEntity implements BaseEntity {
 	@Email
 	private String email;
 
+	@Column(name = "phone_number")
+	@Email
+	private String phoneNumber;
+
 	@Column(name = "birth_date")
 	private LocalDate birthDate;
 
@@ -137,6 +141,14 @@ public class UserEntity implements BaseEntity {
 		this.socialType = socialType;
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -155,6 +167,7 @@ public class UserEntity implements BaseEntity {
 				.append(role, that.role)
 				.append(language, that.language)
 				.append(socialType, that.socialType)
+				.append(phoneNumber, that.phoneNumber)
 				.isEquals();
 	}
 
@@ -170,6 +183,7 @@ public class UserEntity implements BaseEntity {
 				.append(role)
 				.append(language)
 				.append(socialType)
+				.append(phoneNumber)
 				.toHashCode();
 	}
 
@@ -181,6 +195,7 @@ public class UserEntity implements BaseEntity {
 				", lastName='" + lastName + '\'' +
 				", firstName='" + firstName + '\'' +
 				", email='" + email + '\'' +
+				", phoneNumber='" + phoneNumber + '\'' +
 				", birthDate=" + birthDate +
 				", role=" + role +
 				", language=" + language +

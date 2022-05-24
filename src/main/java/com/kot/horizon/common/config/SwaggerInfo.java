@@ -15,6 +15,8 @@ public class SwaggerInfo {
 
 	public static final String GEO_DATA_API = "Geo Data API";
 
+	public static final String BOOKING_API = "Booking API";
+
 	public static final String REGISTRATION_API = "Registration API";
 
 	public static final String AUTHENTICATION_API = "Authentication API";

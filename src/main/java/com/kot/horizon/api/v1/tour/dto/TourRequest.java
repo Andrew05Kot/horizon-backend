@@ -12,9 +12,6 @@ import com.kot.horizon.api.v1.geodata.GeoDataRequest;
 
 public class TourRequest implements AbstractRequest {
 
-	@ApiModelProperty(notes = "The identification unique number of item", example = "1")
-	private Long id;
-
 	@ApiModelProperty(notes = "The name that describes tour", example = "Odessa")
 	@NotBlank
 	private String name;
@@ -31,14 +28,6 @@ public class TourRequest implements AbstractRequest {
 	@ApiModelProperty(notes = "Geographical information of the tour")
 	@NotNull
 	private GeoDataRequest geoData;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -82,7 +71,6 @@ public class TourRequest implements AbstractRequest {
 
 		return new EqualsBuilder()
 				.append(rate, that.rate)
-				.append(id, that.id)
 				.append(name, that.name)
 				.append(description, that.description)
 				.append(geoData, that.geoData)
@@ -92,7 +80,6 @@ public class TourRequest implements AbstractRequest {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(id)
 				.append(name)
 				.append(description)
 				.append(rate)

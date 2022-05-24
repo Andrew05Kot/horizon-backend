@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import io.swagger.annotations.ApiModelProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.api.v1.general.AbstractRequest;
 import com.kot.horizon.api.v1.general.AbstractResponse;
 import com.kot.horizon.user.model.Language;
@@ -30,6 +32,9 @@ public class User implements AbstractRequest, AbstractResponse {
 	@Email
 	@ApiModelProperty(notes = "The email a user <br> filterable equals (=)  and contains(:), this field has been sorted")
 	private String email;
+
+	@ApiModelProperty(notes = "The phone number of a user <br> filterable equals (=)  and contains(:)")
+	private String phoneNumber;
 
 	@ApiModelProperty(notes = "The language of user", dataType = "string", allowableValues = "UK, EN")
 	private Language language;
@@ -110,5 +115,51 @@ public class User implements AbstractRequest, AbstractResponse {
 
 	public void setSocialType(String socialType) {
 		this.socialType = socialType;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+
+		if (o == null || getClass() != o.getClass()) return false;
+
+		User user = (User) o;
+
+		return new EqualsBuilder()
+				.append(isPhotoToDelete, user.isPhotoToDelete)
+				.append(id, user.id)
+				.append(lastName, user.lastName)
+				.append(firstName, user.firstName)
+				.append(birthDate, user.birthDate)
+				.append(role, user.role)
+				.append(email, user.email)
+				.append(phoneNumber, user.phoneNumber)
+				.append(language, user.language)
+				.append(socialType, user.socialType)
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+				.append(id)
+				.append(lastName)
+				.append(firstName)
+				.append(birthDate)
+				.append(role)
+				.append(email)
+				.append(phoneNumber)
+				.append(language)
+				.append(isPhotoToDelete)
+				.append(socialType)
+				.toHashCode();
 	}
 }
