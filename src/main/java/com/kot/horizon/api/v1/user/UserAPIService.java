@@ -86,6 +86,8 @@ public class UserAPIService extends AbstractAPIService<UserEntity, User, User, U
 		entity.setFirstName(request.getFirstName());
 		entity.setBirthDate(request.getBirthDate());
 		entity.setEmail(request.getEmail());
+		entity.setPhoneNumber(request.getPhoneNumber());
+		entity.setAboutMe(request.getAboutMe());
 		entity.setLanguage(request.getLanguage());
 		entity.setRole(request.getRole());
 	}

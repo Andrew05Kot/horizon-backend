@@ -45,6 +45,9 @@ public class User implements AbstractRequest, AbstractResponse {
 	@ApiModelProperty(notes = "The name of user social login")
 	private String socialType;
 
+	@ApiModelProperty(notes = "The description of user")
+	private String aboutMe;
+
 	public boolean getIsPhotoToDelete() {
 		return isPhotoToDelete;
 	}
@@ -125,6 +128,14 @@ public class User implements AbstractRequest, AbstractResponse {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public String getAboutMe() {
+		return aboutMe;
+	}
+
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -144,6 +155,7 @@ public class User implements AbstractRequest, AbstractResponse {
 				.append(phoneNumber, user.phoneNumber)
 				.append(language, user.language)
 				.append(socialType, user.socialType)
+				.append(aboutMe, user.aboutMe)
 				.isEquals();
 	}
 
@@ -160,6 +172,7 @@ public class User implements AbstractRequest, AbstractResponse {
 				.append(language)
 				.append(isPhotoToDelete)
 				.append(socialType)
+				.append(aboutMe)
 				.toHashCode();
 	}
 }

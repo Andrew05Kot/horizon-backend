@@ -19,16 +19,17 @@ public class UserMapper extends AbstractConverter<UserEntity, User> {
 		user.setId(userEntity.getId());
 		user.setLastName(userEntity.getLastName());
 		user.setFirstName(userEntity.getFirstName());
+		user.setEmail(userEntity.getEmail());
 		user.setPhoneNumber(userEntity.getPhoneNumber());
+		user.setBirthDate(userEntity.getBirthDate());
+		user.setAboutMe(userEntity.getAboutMe());
 		return user;
 	}
 
 	@Override
 	protected User getOwnerResponse(UserEntity userEntity) {
 		User convertedUser = getPublicResponse(userEntity);
-		convertedUser.setBirthDate(userEntity.getBirthDate());
 		convertedUser.setRole(userEntity.getRole());
-		convertedUser.setEmail(userEntity.getEmail());
 		// TODO do we need the language field in public?
 		convertedUser.setLanguage(userEntity.getLanguage());
 		convertedUser.setSocialType(userEntity.getSocialType());
