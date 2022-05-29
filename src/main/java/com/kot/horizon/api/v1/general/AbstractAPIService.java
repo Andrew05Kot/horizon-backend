@@ -68,6 +68,17 @@ public abstract class AbstractAPIService<
 				pageSize.orElse(DEFAULT_PAGE_SIZE), sort, expand);
 	}
 
+	public ResponsePage<ResponseBean> findItems(Optional<String> search, Sort sort, Optional<String> expand) {
+		Specification<Entity> filteringSpecification = null;
+		if (search.isPresent()) {
+			List<FilterableProperty<Entity>> filterableProperties = getSpecificationBuilder().getFilterableProperties();
+			List<SearchCriteria> searchCriteria = searchCriteriaParser.parseSearchCriteria(search.get(),
+					filterableProperties);
+			filteringSpecification = getSpecificationBuilder().buildSpecification(searchCriteria);
+		}
+		return getResponsePage(filteringSpecification, sort, expand);
+	}
+
 	public ResponsePage<ResponseBean> getResponsePage(Specification<Entity> filteringSpecification, Integer pageNo,
 			Integer pageSize, Sort sort, Optional<String> expand) {
 		pageSize = pageSize > MAX_PAGE_SIZE ? MAX_PAGE_SIZE : pageSize;
@@ -77,6 +88,14 @@ public abstract class AbstractAPIService<
 		List<ResponseBean> responses = pagedResult.getContent().stream().map(item -> convertToResponseBean(item, expand))
 				.collect(Collectors.toList());
 		return new ResponsePage<>(responses, pagedResult.getTotalElements());
+	}
+
+	public ResponsePage<ResponseBean> getResponsePage(Specification<Entity> filteringSpecification, Sort sort, Optional<String> expand) {
+		sort = getSortedByDefault(sort);
+		List<Entity> pagedResult = service.findAll(filteringSpecification, sort);
+		List<ResponseBean> responses = pagedResult.stream().map(item -> convertToResponseBean(item, expand))
+				.collect(Collectors.toList());
+		return new ResponsePage<>(responses, responses.size());
 	}
 
 	public void delete(Long id) {

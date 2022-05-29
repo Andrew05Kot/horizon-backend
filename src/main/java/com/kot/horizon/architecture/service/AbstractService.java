@@ -1,5 +1,6 @@
 package com.kot.horizon.architecture.service;
 
+import java.util.List;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -8,6 +9,7 @@ import javax.validation.Validator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.access.AccessDeniedException;
 import com.kot.horizon.architecture.dao.AbstractDAO;
@@ -50,6 +52,10 @@ public abstract class AbstractService<Entity extends BaseEntity> {
 
 	public Page<Entity> findAll(Specification<Entity> filteringSpecification, Pageable paging) {
 		return getDAO().findAll(filteringSpecification, paging);
+	}
+
+	public List<Entity> findAll(Specification<Entity> filteringSpecification, Sort sort) {
+		return getDAO().findAll(filteringSpecification, sort);
 	}
 
 	public Entity findById(Long id) {

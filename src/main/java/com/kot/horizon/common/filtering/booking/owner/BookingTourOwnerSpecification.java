@@ -1,4 +1,4 @@
-package com.kot.horizon.common.filtering.booking;
+package com.kot.horizon.common.filtering.booking.owner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +13,12 @@ import com.kot.horizon.booking.BookingEntity;
 import com.kot.horizon.common.filtering.FilteringOperation;
 import com.kot.horizon.common.filtering.SearchCriteria;
 
-public class BookingOwnerSpecification implements Specification<BookingEntity> {
+public class BookingTourOwnerSpecification implements Specification<BookingEntity> {
 
 	private static final long serialVersionUID = 6780218411885895782L;
 	private SearchCriteria searchCriteria;
 
-	public BookingOwnerSpecification(SearchCriteria searchCriteria) {
+	public BookingTourOwnerSpecification(SearchCriteria searchCriteria) {
 		this.searchCriteria = searchCriteria;
 	}
 
@@ -40,7 +40,7 @@ public class BookingOwnerSpecification implements Specification<BookingEntity> {
 
 		if (o == null || getClass() != o.getClass()) return false;
 
-		BookingOwnerSpecification that = (BookingOwnerSpecification) o;
+		BookingTourOwnerSpecification that = (BookingTourOwnerSpecification) o;
 
 		return new EqualsBuilder()
 				.append(searchCriteria, that.searchCriteria)

@@ -8,8 +8,8 @@ import com.kot.horizon.booking.BookingEntity;
 import com.kot.horizon.common.filtering.EntityFilterSpecificationsBuilder;
 import com.kot.horizon.common.filtering.FilterableProperty;
 import com.kot.horizon.common.filtering.SearchCriteria;
-import com.kot.horizon.common.filtering.tour.TourNameOrDescriptionSpecificationBuilder;
-import com.kot.horizon.tour.model.TourEntity;
+import com.kot.horizon.common.filtering.booking.owner.BookingTourOwnerSpecificationBuilder;
+import com.kot.horizon.common.filtering.booking.recipient.BookingTouristSpecificationBuilder;
 
 @Component
 public class BookingSpecificationBuilder implements EntityFilterSpecificationsBuilder<BookingEntity> {
@@ -17,7 +17,9 @@ public class BookingSpecificationBuilder implements EntityFilterSpecificationsBu
 	public List<FilterableProperty<BookingEntity>> getFilterableProperties() {
 		return Arrays.asList(
 				new FilterableProperty<BookingEntity>("owner", Long.class,
-						BookingOwnerSpecificationBuilder.SUPPORTED_OPERATORS, new BookingOwnerSpecificationBuilder())
+						BookingTourOwnerSpecificationBuilder.SUPPORTED_OPERATORS, new BookingTourOwnerSpecificationBuilder()),
+				new FilterableProperty<BookingEntity>("tourist", Long.class,
+						BookingTouristSpecificationBuilder.SUPPORTED_OPERATORS, new BookingTouristSpecificationBuilder())
 		);
 	}
 

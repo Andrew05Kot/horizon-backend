@@ -55,6 +55,23 @@ public abstract class AbstractController<
 		return apiService.findItems(search, pageNo, pageSize, sort, expand);
 	}
 
+	@ApiOperation(value = "Retrieve a list of all items")
+	@GetMapping(value = "/unpaged", produces = MediaType.APPLICATION_JSON_VALUE )
+	public ResponsePage< ResponseBean > findItemsUnpaged(
+			@ApiParam( "Search expression used to filter results. To check fields which support filtering, " +
+					"please refer to response model" )
+			@RequestParam(required = false) Optional<String> search,
+			@ApiParam( "Page number")
+			@RequestParam(required = false) Optional<Integer> pageNo,
+			@ApiParam( "The size of the pager")
+			@RequestParam(required = false) Optional<Integer> pageSize,
+			@ApiParam( "Specify sort fields") Sort sort,
+			@ApiParam ("specify field to be expanded")
+			@RequestParam(required = false) Optional<String> expand) {
+		return apiService.findItems(search, sort, expand);
+	}
+
+
 	@ApiOperation(value = "Retrieve a specific item by ID")
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseBean findById( @PathVariable Long id,

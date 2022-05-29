@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 import com.kot.horizon.common.filtering.FilteringOperation;
@@ -53,6 +54,11 @@ public abstract class AbstractDAO<Entity extends BaseEntity,
 	public List<Entity> findAll(Specification<Entity> specification) {
 		specification = setSpecificationsForReading(specification);
 		return repository.findAll(specification);
+	}
+
+	public List<Entity> findAll(Specification<Entity> specification, Sort sort) {
+		specification = setSpecificationsForReading(specification);
+		return repository.findAll(specification, sort);
 	}
 
 	@Transactional

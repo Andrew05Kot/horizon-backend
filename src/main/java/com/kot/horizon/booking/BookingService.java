@@ -16,4 +16,10 @@ public class BookingService extends AbstractService<BookingEntity> {
 	protected AbstractDAO<BookingEntity, ? extends BaseCRUDRepository<BookingEntity>> getDAO() {
 		return dao;
 	}
+
+	@Override
+	public BookingEntity create(BookingEntity entity) {
+		entity.setStatus(BookingStatus.PENDING);
+		return super.create(entity);
+	}
 }

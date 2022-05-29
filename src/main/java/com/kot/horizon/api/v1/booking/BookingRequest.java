@@ -19,7 +19,6 @@ public class BookingRequest implements AbstractRequest {
 	private Long touristId;
 
 	@ApiModelProperty(notes = "Geographical information of the tour")
-	@NotBlank
 	private BookingStatus status;
 
 	public Long getTourId() {
