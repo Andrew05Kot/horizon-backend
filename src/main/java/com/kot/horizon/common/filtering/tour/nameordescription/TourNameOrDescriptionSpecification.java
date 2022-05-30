@@ -1,4 +1,4 @@
-package com.kot.horizon.common.filtering.tour;
+package com.kot.horizon.common.filtering.tour.nameordescription;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.kot.horizon.common.filtering.tour;
+package com.kot.horizon.common.filtering.tour.tourist;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,13 +10,13 @@ import com.kot.horizon.common.filtering.specifications.SpecificationBuilder;
 import com.kot.horizon.tour.model.TourEntity;
 
 @Component
-public class TourNameOrDescriptionSpecificationBuilder implements SpecificationBuilder<TourEntity> {
+public class TourTouristSpecificationBuilder implements SpecificationBuilder<TourEntity> {
 
 	public static final List<FilteringOperation> SUPPORTED_OPERATORS = Arrays.asList(
-			FilteringOperation.CONTAIN);
+			FilteringOperation.EQUAL);
 
 	@Override
 	public Specification<TourEntity> buildSpecification(SearchCriteria searchCriteria) {
-		return new TourNameOrDescriptionSpecification(searchCriteria);
+		return new TourTouristSpecification(searchCriteria);
 	}
 }
