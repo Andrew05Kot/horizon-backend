@@ -44,6 +44,7 @@ public class BookingAPIService extends AbstractAPIService<BookingEntity, Booking
 		entity.setTourist(userService.findById(request.getTouristId()));
 		entity.setTour(tourService.findById(request.getTourId()));
 		entity.setStatus(request.getStatus());
+		entity.setLiked(request.getLiked());
 	}
 
 	@Override

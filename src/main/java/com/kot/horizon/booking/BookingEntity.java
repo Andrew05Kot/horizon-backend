@@ -36,6 +36,9 @@ public class BookingEntity implements BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private BookingStatus status;
 
+	@Column(name = "liked")
+	private Boolean liked;
+
 	@Override
 	public Long getId() {
 		return id;
@@ -69,6 +72,14 @@ public class BookingEntity implements BaseEntity {
 		this.status = status;
 	}
 
+	public Boolean getLiked() {
+		return liked;
+	}
+
+	public void setLiked(Boolean liked) {
+		this.liked = liked;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -82,6 +93,7 @@ public class BookingEntity implements BaseEntity {
 				.append(tour, that.tour)
 				.append(tourist, that.tourist)
 				.append(status, that.status)
+				.append(liked, that.liked)
 				.isEquals();
 	}
 
@@ -92,6 +104,7 @@ public class BookingEntity implements BaseEntity {
 				.append(tour)
 				.append(tourist)
 				.append(status)
+				.append(liked)
 				.toHashCode();
 	}
 }

@@ -13,7 +13,9 @@ import com.kot.horizon.image.model.ImageEntity;
 import com.kot.horizon.image.service.ImageService;
 import com.kot.horizon.tour.dao.TourDao;
 import com.kot.horizon.tour.model.TourEntity;
+import com.kot.horizon.user.model.UserEntity;
 import com.kot.horizon.user.service.CurrentUserService;
+import com.kot.horizon.user.service.UserService;
 
 @Service
 public class TourService extends AbstractService<TourEntity> {
@@ -27,9 +29,17 @@ public class TourService extends AbstractService<TourEntity> {
 	@Autowired
 	private CurrentUserService currentUserService;
 
+	@Autowired
+	private UserService userService;
+
 	@Override
 	public TourEntity create(TourEntity entity) {
-		entity.setOwner(currentUserService.getCurrentUser());
+		UserEntity currentUser = currentUserService.getCurrentUser();
+		entity.setOwner(currentUser);
+		if (currentUser.getRate() < 100) {
+			currentUser.setRate(currentUser.getRate() + 1);
+			userService.update(currentUser);
+		}
 		return super.create(entity);
 	}
 

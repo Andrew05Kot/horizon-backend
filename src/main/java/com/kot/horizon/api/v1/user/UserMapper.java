@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.kot.horizon.api.v1.AbstractConverter;
+import com.kot.horizon.api.v1.image.ImageMapper;
 import com.kot.horizon.user.model.UserEntity;
 import com.kot.horizon.user.service.UserService;
 
@@ -12,6 +13,9 @@ public class UserMapper extends AbstractConverter<UserEntity, User> {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private ImageMapper mapper;
 
 	@Override
 	public User getPublicResponse(UserEntity userEntity) {
@@ -23,6 +27,9 @@ public class UserMapper extends AbstractConverter<UserEntity, User> {
 		user.setPhoneNumber(userEntity.getPhoneNumber());
 		user.setBirthDate(userEntity.getBirthDate());
 		user.setAboutMe(userEntity.getAboutMe());
+		if (userEntity.getImage() != null) {
+			user.setImage(mapper.toDto(userEntity.getImage()));
+		}
 		return user;
 	}
 

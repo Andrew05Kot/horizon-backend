@@ -22,6 +22,9 @@ public class BookingResponse implements AbstractResponse {
 	@ApiModelProperty(notes = "Geographical information of the tour")
 	private BookingStatus status;
 
+	@ApiModelProperty(notes = "Is well or bed tour for this user")
+	private Boolean liked;
+
 	@Override
 	public Long getId() {
 		return id;
@@ -47,6 +50,14 @@ public class BookingResponse implements AbstractResponse {
 		this.tourist = tourist;
 	}
 
+	public Boolean getLiked() {
+		return liked;
+	}
+
+	public void setLiked(Boolean liked) {
+		this.liked = liked;
+	}
+
 	public BookingStatus getStatus() {
 		return status;
 	}
@@ -68,6 +79,7 @@ public class BookingResponse implements AbstractResponse {
 				.append(status, that.status)
 				.append(tour, that.tour)
 				.append(tourist, that.tourist)
+				.append(liked, that.liked)
 				.isEquals();
 	}
 
@@ -78,6 +90,7 @@ public class BookingResponse implements AbstractResponse {
 				.append(status)
 				.append(tour)
 				.append(tourist)
+				.append(liked)
 				.toHashCode();
 	}
 }

@@ -22,7 +22,7 @@ public class TourResponse implements AbstractResponse {
 	@ApiModelProperty(notes = "The information about the tour", example = "Best trip to sea..")
 	private String description;
 
-	@ApiModelProperty(notes = "The rate of tour", example = "Best trip to sea..")
+	@ApiModelProperty(notes = "The rate of tour", example = "99")
 	private int rate;
 
 	@ApiModelProperty(notes= "Images of tour")

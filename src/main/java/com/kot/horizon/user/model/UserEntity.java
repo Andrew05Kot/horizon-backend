@@ -8,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -15,6 +17,7 @@ import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.architecture.model.BaseEntity;
+import com.kot.horizon.image.model.ImageEntity;
 
 @Entity
 @Table(name = "api_user")
@@ -62,6 +65,13 @@ public class UserEntity implements BaseEntity {
 
 	@Column(name = "about_me")
 	private String aboutMe;
+
+	@OneToOne
+	@JoinColumn(name = "image_id", referencedColumnName = "id")
+	private ImageEntity image;
+
+	@Column(name = "rate", nullable = false)
+	private int rate = 50;
 
 	public Long getId() {
 		return id;
@@ -159,6 +169,22 @@ public class UserEntity implements BaseEntity {
 		this.aboutMe = aboutMe;
 	}
 
+	public ImageEntity getImage() {
+		return image;
+	}
+
+	public void setImage(ImageEntity image) {
+		this.image = image;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -179,6 +205,8 @@ public class UserEntity implements BaseEntity {
 				.append(socialType, that.socialType)
 				.append(phoneNumber, that.phoneNumber)
 				.append(aboutMe, that.aboutMe)
+				.append(image, that.image)
+				.append(rate, that.rate)
 				.isEquals();
 	}
 
@@ -196,6 +224,8 @@ public class UserEntity implements BaseEntity {
 				.append(socialType)
 				.append(phoneNumber)
 				.append(aboutMe)
+				.append(image)
+				.append(rate)
 				.toHashCode();
 	}
 
@@ -214,6 +244,7 @@ public class UserEntity implements BaseEntity {
 				", socialType='" + socialType + '\'' +
 				", aboutMe='" + aboutMe + '\'' +
 				", imageUrl='" + imageUrl + '\'' +
+				", rate='" + rate + '\'' +
 				'}';
 	}
 }

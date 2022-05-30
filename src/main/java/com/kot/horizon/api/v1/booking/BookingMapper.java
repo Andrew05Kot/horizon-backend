@@ -27,6 +27,7 @@ public class BookingMapper {
 		entity.setStatus(request.getStatus());
 		entity.setTour(tourService.findById(request.getTourId()));
 		entity.setTourist(userService.findById(request.getTouristId()));
+		entity.setLiked(request.getLiked());
 		return entity;
 	}
 
@@ -36,6 +37,7 @@ public class BookingMapper {
 		response.setStatus(entity.getStatus());
 		response.setTour(tourMapper.toDto(entity.getTour()));
 		response.setTourist(userMapper.getPublicResponse(entity.getTourist()));
+		response.setLiked(entity.getLiked());
 		return response;
 	}
 }

@@ -24,11 +24,13 @@ public abstract class AbstractService<Entity extends BaseEntity> {
 	protected abstract AbstractDAO<Entity, ? extends BaseCRUDRepository<Entity>> getDAO();
 
 	public Entity create(Entity entity) {
+		beforeCreate(entity);
 		validate(entity);
 		return getDAO().save(entity);
 	}
 
 	public Entity update(Entity entity) {
+		beforeUpdate(entity);
 		validate(entity);
 		if( getDAO().findByIdForModifying( entity ) == null ){
 			throw new AccessDeniedException("You don`t have permission!");
@@ -76,6 +78,14 @@ public abstract class AbstractService<Entity extends BaseEntity> {
 	protected <T> T cloneItem( T newItem, T oldItem ) {
 		BeanUtils.copyProperties(oldItem, newItem);
 		return newItem;
+	}
+
+	protected void beforeUpdate(Entity entity) {
+
+	}
+
+	protected void beforeCreate(Entity entity) {
+
 	}
 
 }

@@ -8,6 +8,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.api.v1.general.AbstractRequest;
 import com.kot.horizon.api.v1.general.AbstractResponse;
+import com.kot.horizon.api.v1.image.ImageResponse;
 import com.kot.horizon.user.model.Language;
 import com.kot.horizon.user.model.UserRole;
 
@@ -47,6 +48,12 @@ public class User implements AbstractRequest, AbstractResponse {
 
 	@ApiModelProperty(notes = "The description of user")
 	private String aboutMe;
+
+	@ApiModelProperty(notes = "User's avatar image")
+	private ImageResponse image;
+
+	@ApiModelProperty(notes = "The rate of user", example = "90")
+	private int rate;
 
 	public boolean getIsPhotoToDelete() {
 		return isPhotoToDelete;
@@ -136,6 +143,22 @@ public class User implements AbstractRequest, AbstractResponse {
 		this.aboutMe = aboutMe;
 	}
 
+	public ImageResponse getImage() {
+		return image;
+	}
+
+	public void setImage(ImageResponse image) {
+		this.image = image;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -156,6 +179,8 @@ public class User implements AbstractRequest, AbstractResponse {
 				.append(language, user.language)
 				.append(socialType, user.socialType)
 				.append(aboutMe, user.aboutMe)
+				.append(image, user.image)
+				.append(rate, user.rate)
 				.isEquals();
 	}
 
@@ -173,6 +198,8 @@ public class User implements AbstractRequest, AbstractResponse {
 				.append(isPhotoToDelete)
 				.append(socialType)
 				.append(aboutMe)
+				.append(image)
+				.append(rate)
 				.toHashCode();
 	}
 }

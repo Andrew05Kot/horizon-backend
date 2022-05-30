@@ -1,6 +1,5 @@
 package com.kot.horizon.api.v1.booking;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -20,6 +19,9 @@ public class BookingRequest implements AbstractRequest {
 
 	@ApiModelProperty(notes = "Geographical information of the tour")
 	private BookingStatus status;
+
+	@ApiModelProperty(notes = "Is well or bed tour for this user")
+	private Boolean liked;
 
 	public Long getTourId() {
 		return tourId;
@@ -45,6 +47,14 @@ public class BookingRequest implements AbstractRequest {
 		this.status = status;
 	}
 
+	public Boolean getLiked() {
+		return liked;
+	}
+
+	public void setLiked(Boolean liked) {
+		this.liked = liked;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -57,6 +67,7 @@ public class BookingRequest implements AbstractRequest {
 				.append(tourId, that.tourId)
 				.append(touristId, that.touristId)
 				.append(status, that.status)
+				.append(liked, that.liked)
 				.isEquals();
 	}
 
@@ -66,6 +77,7 @@ public class BookingRequest implements AbstractRequest {
 				.append(tourId)
 				.append(touristId)
 				.append(status)
+				.append(liked)
 				.toHashCode();
 	}
 }

@@ -7,8 +7,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import com.kot.horizon.api.v1.general.AbstractAPIService;
 import com.kot.horizon.common.filtering.EntityFilterSpecificationsBuilder;
+import com.kot.horizon.image.exception.UnsupportedImageTypeException;
+import com.kot.horizon.image.exception.WrongImageSizeException;
 import com.kot.horizon.user.model.UserEntity;
 import com.kot.horizon.user.service.CurrentUserService;
 import com.kot.horizon.user.service.UserService;
@@ -36,6 +39,10 @@ public class UserAPIService extends AbstractAPIService<UserEntity, User, User, U
 		UserEntity userEntity = getValidEntityById(id);
 		copyProperties(request, userEntity);
 		return userConverter.getResponseBean(service.update(userEntity), new ArrayList<>());
+	}
+
+	public User uploadImage(MultipartFile imageFile) throws UnsupportedImageTypeException, WrongImageSizeException {
+		return userConverter.getPublicResponse(service.createAndSaveImage(imageFile));
 	}
 
 	public List<User> convertEntitiesListToDto(List<UserEntity> entities) {

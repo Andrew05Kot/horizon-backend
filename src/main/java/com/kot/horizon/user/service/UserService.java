@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import com.kot.horizon.common.filtering.FilteringOperation;
 import com.kot.horizon.common.filtering.specifications.EqualingSpecification;
 import com.kot.horizon.common.filtering.SearchCriteria;
 import com.kot.horizon.architecture.dao.AbstractDAO;
+import com.kot.horizon.image.exception.UnsupportedImageTypeException;
+import com.kot.horizon.image.exception.WrongImageSizeException;
+import com.kot.horizon.image.service.ImageService;
 import com.kot.horizon.user.dao.UserDAO;
 import com.kot.horizon.common.exception.LocalizedException;
 import com.kot.horizon.photo.model.PhotoEntity;
@@ -34,6 +38,9 @@ public class UserService extends AbstractService<UserEntity> {
 	private DateTimeService dateTimeService;
 
 	@Autowired
+	private ImageService imageService;
+
+	@Autowired
 	private UserDAO userDAO;
 
 	@Override
@@ -49,6 +56,14 @@ public class UserService extends AbstractService<UserEntity> {
 
 	public UserEntity getUserBySocialId(String facebookId) {
 		return userDAO.findBySocialId(facebookId);
+	}
+
+	public UserEntity createAndSaveImage(MultipartFile imageFile) throws UnsupportedImageTypeException, WrongImageSizeException {
+		UserEntity userEntity = currentUserService.getCurrentUser();
+		if (imageFile != null) {
+			userEntity.setImage(imageService.saveImage(imageFile));
+		}
+		return update(userEntity);
 	}
 
 	public List<UserEntity> getByUserRole(UserRole role) {
