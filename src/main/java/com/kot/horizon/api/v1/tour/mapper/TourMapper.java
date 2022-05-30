@@ -8,6 +8,7 @@ import com.kot.horizon.api.v1.image.ImageMapper;
 import com.kot.horizon.api.v1.tour.dto.TourRequest;
 import com.kot.horizon.api.v1.tour.dto.TourResponse;
 import com.kot.horizon.api.v1.user.UserMapper;
+import com.kot.horizon.common.service.datetime.DateTimeService;
 import com.kot.horizon.tour.model.TourEntity;
 
 @Component
@@ -15,11 +16,15 @@ public class TourMapper {
 
 	@Autowired
 	private ImageMapper imageMapper;
+
 	@Autowired
 	private GeoDataMapper geoDataMapper;
 
 	@Autowired
 	private UserMapper userMapper;
+
+	@Autowired
+	private DateTimeService dateTimeService;
 
 	public TourEntity toEntity(TourRequest request) {
 		TourEntity entity = new TourEntity();
@@ -27,6 +32,7 @@ public class TourMapper {
 		entity.setDescription(request.getDescription());
 		entity.setRate(request.getRate());
 		entity.setGeoData(geoDataMapper.toEntity(request.getGeoData()));
+		entity.setEventDate(dateTimeService.toZonedDateTime(request.getEventDate()));
 		return entity;
 	}
 
@@ -36,6 +42,7 @@ public class TourMapper {
 		response.setName(entity.getName());
 		response.setDescription(entity.getDescription());
 		response.setRate(entity.getRate());
+		response.setEventDate(entity.getEventDate().toLocalDateTime());
 		if (entity.getImages() != null) {
 			response.setImages(entity.getImages().stream().map(image -> imageMapper.toDto(image)).collect(Collectors.toList()));
 		}

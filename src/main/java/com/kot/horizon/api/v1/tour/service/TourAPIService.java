@@ -11,6 +11,7 @@ import com.kot.horizon.api.v1.tour.dto.TourResponse;
 import com.kot.horizon.api.v1.tour.mapper.TourMapper;
 import com.kot.horizon.common.filtering.EntityFilterSpecificationsBuilder;
 import com.kot.horizon.common.filtering.tour.TourSpecificationBuilder;
+import com.kot.horizon.common.service.datetime.DateTimeService;
 import com.kot.horizon.image.exception.UnsupportedImageTypeException;
 import com.kot.horizon.image.exception.WrongImageSizeException;
 import com.kot.horizon.image.service.ImageService;
@@ -28,6 +29,9 @@ public class TourAPIService extends AbstractAPIService<TourEntity, TourRequest, 
 
 	@Autowired
 	private TourSpecificationBuilder tourSpecificationBuilder;
+
+	@Autowired
+	private DateTimeService dateTimeService;
 
 	public TourResponse uploadAndSaveImages(Optional<MultipartFile[]> files, Long tourId, Optional<List<Long>> imageIdsToRemove) throws UnsupportedImageTypeException, WrongImageSizeException {
 		removeImagesIfNeed(imageIdsToRemove);
@@ -58,6 +62,7 @@ public class TourAPIService extends AbstractAPIService<TourEntity, TourRequest, 
 		entity.setName(request.getName());
 		entity.setDescription(request.getDescription());
 		entity.setRate(entity.getRate());
+		entity.setEventDate(dateTimeService.toZonedDateTime(request.getEventDate()));
 	}
 
 	@Override

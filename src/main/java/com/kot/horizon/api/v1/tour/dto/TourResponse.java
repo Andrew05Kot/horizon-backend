@@ -1,5 +1,7 @@
 package com.kot.horizon.api.v1.tour.dto;
 
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -31,6 +33,9 @@ public class TourResponse implements AbstractResponse {
 
 	@ApiModelProperty(notes = "The user owner of the tour.")
 	private User owner;
+
+	@ApiModelProperty(notes = "The start date of tour event")
+	private LocalDateTime eventDate;
 
 	@Override
 	public Long getId() {
@@ -89,6 +94,14 @@ public class TourResponse implements AbstractResponse {
 		this.owner = owner;
 	}
 
+	public LocalDateTime getEventDate() {
+		return eventDate;
+	}
+
+	public void setEventDate(LocalDateTime eventDate) {
+		this.eventDate = eventDate;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -105,6 +118,7 @@ public class TourResponse implements AbstractResponse {
 				.append(images, that.images)
 				.append(geoData, that.geoData)
 				.append(owner, that.owner)
+				.append(eventDate, that.eventDate)
 				.isEquals();
 	}
 
@@ -118,6 +132,7 @@ public class TourResponse implements AbstractResponse {
 				.append(images)
 				.append(geoData)
 				.append(owner)
+				.append(eventDate)
 				.toHashCode();
 	}
 }

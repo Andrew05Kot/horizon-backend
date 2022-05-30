@@ -1,5 +1,6 @@
 package com.kot.horizon.tour.model;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,6 +41,9 @@ public class TourEntity implements BaseEntity {
 
 	@Column(name = "rate", nullable = false)
 	private int rate;
+
+	@Column(name = "event_date", nullable = false, columnDefinition = "TIMESTAMP WITH TIME ZONE")
+	private ZonedDateTime eventDate;
 
 	@OneToMany
 	@JoinTable( name = "tour_image",
@@ -111,6 +115,14 @@ public class TourEntity implements BaseEntity {
 		this.owner = owner;
 	}
 
+	public ZonedDateTime getEventDate() {
+		return eventDate;
+	}
+
+	public void setEventDate(ZonedDateTime eventDate) {
+		this.eventDate = eventDate;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -125,6 +137,7 @@ public class TourEntity implements BaseEntity {
 				.append(name, that.name)
 				.append(description, that.description)
 				.append(geoData, that.geoData)
+				.append(eventDate, that.eventDate)
 				.isEquals();
 	}
 
@@ -136,6 +149,20 @@ public class TourEntity implements BaseEntity {
 				.append(description)
 				.append(rate)
 				.append(geoData)
+				.append(eventDate)
 				.toHashCode();
+	}
+
+	@Override
+	public String toString() {
+		return "TourEntity{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", description='" + description + '\'' +
+				", rate=" + rate +
+				", eventDate=" + eventDate +
+				", geoData=" + geoData +
+				", owner=" + owner +
+				'}';
 	}
 }

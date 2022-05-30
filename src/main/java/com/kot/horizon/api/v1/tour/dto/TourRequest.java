@@ -1,5 +1,7 @@
 package com.kot.horizon.api.v1.tour.dto;
 
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -28,6 +30,9 @@ public class TourRequest implements AbstractRequest {
 	@ApiModelProperty(notes = "Geographical information of the tour")
 	@NotNull
 	private GeoDataRequest geoData;
+
+	@ApiModelProperty(notes = "The start date of tour event")
+	private LocalDateTime eventDate;
 
 	public String getName() {
 		return name;
@@ -61,6 +66,14 @@ public class TourRequest implements AbstractRequest {
 		this.geoData = geoData;
 	}
 
+	public LocalDateTime getEventDate() {
+		return eventDate;
+	}
+
+	public void setEventDate(LocalDateTime eventDate) {
+		this.eventDate = eventDate;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -74,6 +87,7 @@ public class TourRequest implements AbstractRequest {
 				.append(name, that.name)
 				.append(description, that.description)
 				.append(geoData, that.geoData)
+				.append(eventDate, that.eventDate)
 				.isEquals();
 	}
 
@@ -84,6 +98,7 @@ public class TourRequest implements AbstractRequest {
 				.append(description)
 				.append(rate)
 				.append(geoData)
+				.append(eventDate)
 				.toHashCode();
 	}
 }
