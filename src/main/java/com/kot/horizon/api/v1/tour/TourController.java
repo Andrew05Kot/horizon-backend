@@ -1,4 +1,4 @@
-package com.kot.horizon.api.v1.tour.controller;
+package com.kot.horizon.api.v1.tour;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,14 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.kot.horizon.api.v1.ServiceAPIUrl;
 import com.kot.horizon.api.v1.general.AbstractController;
-import com.kot.horizon.api.v1.tour.dto.TourRequest;
-import com.kot.horizon.api.v1.tour.dto.TourResponse;
-import com.kot.horizon.api.v1.tour.service.TourAPIService;
 import com.kot.horizon.common.config.SwaggerInfo;
 import com.kot.horizon.image.exception.UnsupportedImageTypeException;
 import com.kot.horizon.image.exception.WrongImageSizeException;
-import com.kot.horizon.tour.model.TourEntity;
-import com.kot.horizon.tour.service.TourService;
+import com.kot.horizon.tour.TourEntity;
+import com.kot.horizon.tour.TourService;
 
 @Api(tags = SwaggerInfo.TOUR_API)
 @RestController

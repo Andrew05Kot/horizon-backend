@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.api.v1.general.AbstractResponse;
-import com.kot.horizon.api.v1.tour.dto.TourResponse;
+import com.kot.horizon.api.v1.tour.TourResponse;
 import com.kot.horizon.api.v1.user.User;
 import com.kot.horizon.booking.BookingStatus;
 

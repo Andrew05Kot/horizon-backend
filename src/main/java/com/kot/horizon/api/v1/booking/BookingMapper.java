@@ -2,10 +2,10 @@ package com.kot.horizon.api.v1.booking;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.kot.horizon.api.v1.tour.mapper.TourMapper;
+import com.kot.horizon.api.v1.tour.TourMapper;
 import com.kot.horizon.api.v1.user.UserMapper;
 import com.kot.horizon.booking.BookingEntity;
-import com.kot.horizon.tour.service.TourService;
+import com.kot.horizon.tour.TourService;
 import com.kot.horizon.user.service.UserService;
 
 @Component

@@ -11,7 +11,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.data.jpa.domain.Specification;
 import com.kot.horizon.common.filtering.FilteringOperation;
 import com.kot.horizon.common.filtering.SearchCriteria;
-import com.kot.horizon.tour.model.TourEntity;
+import com.kot.horizon.tour.TourEntity;
 
 public class TourTouristSpecification implements Specification<TourEntity> {
 

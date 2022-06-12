@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import com.kot.horizon.architecture.dao.AbstractDAO;
 import com.kot.horizon.architecture.repository.BaseCRUDRepository;
 import com.kot.horizon.architecture.service.AbstractService;
-import com.kot.horizon.tour.model.TourEntity;
-import com.kot.horizon.tour.service.TourService;
+import com.kot.horizon.tour.TourEntity;
+import com.kot.horizon.tour.TourService;
 
 @Service
 public class BookingService extends AbstractService<BookingEntity> {

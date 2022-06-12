@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.kot.horizon.notification.NotificationEntity;
 import com.kot.horizon.notification.NotificationService;
-import com.kot.horizon.tour.model.TourEntity;
+import com.kot.horizon.tour.TourEntity;
 import com.kot.horizon.user.model.UserEntity;
 
 @Service

@@ -1,15 +1,15 @@
-package com.kot.horizon.api.v1.tour.mapper;
+package com.kot.horizon.api.v1.tour;
 
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.kot.horizon.api.v1.geodata.GeoDataMapper;
 import com.kot.horizon.api.v1.image.ImageMapper;
-import com.kot.horizon.api.v1.tour.dto.TourRequest;
-import com.kot.horizon.api.v1.tour.dto.TourResponse;
+import com.kot.horizon.api.v1.tour.TourRequest;
+import com.kot.horizon.api.v1.tour.TourResponse;
 import com.kot.horizon.api.v1.user.UserMapper;
 import com.kot.horizon.common.service.datetime.DateTimeService;
-import com.kot.horizon.tour.model.TourEntity;
+import com.kot.horizon.tour.TourEntity;
 
 @Component
 public class TourMapper {
@@ -33,6 +33,7 @@ public class TourMapper {
 		entity.setRate(request.getRate());
 		entity.setGeoData(geoDataMapper.toEntity(request.getGeoData()));
 		entity.setEventDate(dateTimeService.toZonedDateTime(request.getEventDate()));
+		entity.setPrice(request.getPrice());
 		return entity;
 	}
 
@@ -50,6 +51,7 @@ public class TourMapper {
 			response.setGeoData(geoDataMapper.toDto(entity.getGeoData()));
 		}
 		response.setOwner(userMapper.getResponseBean(entity.getOwner(), null));
+		response.setPrice(entity.getPrice());
 		return response;
 	}
 

@@ -8,7 +8,7 @@ import com.kot.horizon.booking.BookingEntity;
 import com.kot.horizon.booking.BookingService;
 import com.kot.horizon.common.filtering.EntityFilterSpecificationsBuilder;
 import com.kot.horizon.common.filtering.booking.BookingSpecificationBuilder;
-import com.kot.horizon.tour.service.TourService;
+import com.kot.horizon.tour.TourService;
 import com.kot.horizon.user.service.UserService;
 
 @Service

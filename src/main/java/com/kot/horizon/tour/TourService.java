@@ -1,4 +1,4 @@
-package com.kot.horizon.tour.service;
+package com.kot.horizon.tour;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,8 @@ import com.kot.horizon.image.exception.UnsupportedImageTypeException;
 import com.kot.horizon.image.exception.WrongImageSizeException;
 import com.kot.horizon.image.model.ImageEntity;
 import com.kot.horizon.image.service.ImageService;
-import com.kot.horizon.tour.dao.TourDao;
-import com.kot.horizon.tour.model.TourEntity;
+import com.kot.horizon.tour.TourDao;
+import com.kot.horizon.tour.TourEntity;
 import com.kot.horizon.user.model.UserEntity;
 import com.kot.horizon.user.service.CurrentUserService;
 import com.kot.horizon.user.service.UserService;

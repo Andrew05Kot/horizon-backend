@@ -1,38 +1,52 @@
-package com.kot.horizon.api.v1.tour.dto;
+package com.kot.horizon.api.v1.tour;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import com.kot.horizon.api.v1.general.AbstractRequest;
-import com.kot.horizon.api.v1.geodata.GeoDataRequest;
+import com.kot.horizon.api.v1.general.AbstractResponse;
+import com.kot.horizon.api.v1.geodata.GeoDataResponse;
+import com.kot.horizon.api.v1.image.ImageResponse;
+import com.kot.horizon.api.v1.user.User;
 
-public class TourRequest implements AbstractRequest {
+public class TourResponse implements AbstractResponse {
+
+	@ApiModelProperty(notes = "The identification unique number of item", example = "1")
+	private Long id;
 
 	@ApiModelProperty(notes = "The name that describes tour", example = "Odessa")
-	@NotBlank
 	private String name;
 
 	@ApiModelProperty(notes = "The information about the tour", example = "Best trip to sea..")
-	@NotBlank
 	private String description;
 
-	@ApiModelProperty(notes = "The rate of tour", example = "50")
-	@Min(0)
-	@Max(100)
+	@ApiModelProperty(notes = "The rate of tour", example = "99")
 	private int rate;
 
+	@ApiModelProperty(notes= "Images of tour")
+	private List<ImageResponse> images;
+
 	@ApiModelProperty(notes = "Geographical information of the tour")
-	@NotNull
-	private GeoDataRequest geoData;
+	private GeoDataResponse geoData;
+
+	@ApiModelProperty(notes = "The user owner of the tour.")
+	private User owner;
 
 	@ApiModelProperty(notes = "The start date of tour event")
 	private LocalDateTime eventDate;
+
+	@ApiModelProperty(notes = "The price of the trip")
+	private double price;
+
+	@Override
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -58,12 +72,28 @@ public class TourRequest implements AbstractRequest {
 		this.rate = rate;
 	}
 
-	public GeoDataRequest getGeoData() {
+	public List<ImageResponse> getImages() {
+		return images;
+	}
+
+	public void setImages(List<ImageResponse> images) {
+		this.images = images;
+	}
+
+	public GeoDataResponse getGeoData() {
 		return geoData;
 	}
 
-	public void setGeoData(GeoDataRequest geoData) {
+	public void setGeoData(GeoDataResponse geoData) {
 		this.geoData = geoData;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 
 	public LocalDateTime getEventDate() {
@@ -74,31 +104,47 @@ public class TourRequest implements AbstractRequest {
 		this.eventDate = eventDate;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 
 		if (o == null || getClass() != o.getClass()) return false;
 
-		TourRequest that = (TourRequest) o;
+		TourResponse that = (TourResponse) o;
 
 		return new EqualsBuilder()
 				.append(rate, that.rate)
+				.append(id, that.id)
 				.append(name, that.name)
 				.append(description, that.description)
+				.append(images, that.images)
 				.append(geoData, that.geoData)
+				.append(owner, that.owner)
 				.append(eventDate, that.eventDate)
+				.append(price, that.price)
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(id)
 				.append(name)
 				.append(description)
 				.append(rate)
+				.append(images)
 				.append(geoData)
+				.append(owner)
 				.append(eventDate)
+				.append(price)
 				.toHashCode();
 	}
 }

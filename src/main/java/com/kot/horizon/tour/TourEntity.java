@@ -1,4 +1,4 @@
-package com.kot.horizon.tour.model;
+package com.kot.horizon.tour;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -57,6 +57,9 @@ public class TourEntity implements BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
 	private UserEntity owner;
+
+	@Column(name = "price", nullable = false)
+	private double price = 0;
 
 	@Override
 	public Long getId() {
@@ -123,6 +126,14 @@ public class TourEntity implements BaseEntity {
 		this.eventDate = eventDate;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -138,6 +149,7 @@ public class TourEntity implements BaseEntity {
 				.append(description, that.description)
 				.append(geoData, that.geoData)
 				.append(eventDate, that.eventDate)
+				.append(price, that.price)
 				.isEquals();
 	}
 
@@ -150,6 +162,7 @@ public class TourEntity implements BaseEntity {
 				.append(rate)
 				.append(geoData)
 				.append(eventDate)
+				.append(price)
 				.toHashCode();
 	}
 
@@ -160,6 +173,7 @@ public class TourEntity implements BaseEntity {
 				", name='" + name + '\'' +
 				", description='" + description + '\'' +
 				", rate=" + rate +
+				", price=" + price +
 				", eventDate=" + eventDate +
 				", geoData=" + geoData +
 				", owner=" + owner +

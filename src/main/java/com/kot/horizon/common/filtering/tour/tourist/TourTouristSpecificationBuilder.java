@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import com.kot.horizon.common.filtering.FilteringOperation;
 import com.kot.horizon.common.filtering.SearchCriteria;
 import com.kot.horizon.common.filtering.specifications.SpecificationBuilder;
-import com.kot.horizon.tour.model.TourEntity;
+import com.kot.horizon.tour.TourEntity;
 
 @Component
 public class TourTouristSpecificationBuilder implements SpecificationBuilder<TourEntity> {

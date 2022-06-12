@@ -25,7 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.client.RestTemplate;
 import com.kot.horizon.api.v1.auth.AuthenticationController;
 import com.kot.horizon.api.v1.image.ImageController;
-import com.kot.horizon.api.v1.tour.controller.TourController;
+import com.kot.horizon.api.v1.tour.TourController;
 import com.kot.horizon.api.v1.user.UserController;
 import com.kot.horizon.security.jwt.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.kot.horizon.security.jwt.JwtAuthenticationProvider;

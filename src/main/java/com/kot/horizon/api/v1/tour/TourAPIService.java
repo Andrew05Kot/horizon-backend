@@ -1,4 +1,4 @@
-package com.kot.horizon.api.v1.tour.service;
+package com.kot.horizon.api.v1.tour;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.kot.horizon.api.v1.general.AbstractAPIService;
-import com.kot.horizon.api.v1.tour.dto.TourRequest;
-import com.kot.horizon.api.v1.tour.dto.TourResponse;
-import com.kot.horizon.api.v1.tour.mapper.TourMapper;
+import com.kot.horizon.api.v1.tour.TourRequest;
+import com.kot.horizon.api.v1.tour.TourResponse;
+import com.kot.horizon.api.v1.tour.TourMapper;
 import com.kot.horizon.common.filtering.EntityFilterSpecificationsBuilder;
 import com.kot.horizon.common.filtering.tour.TourSpecificationBuilder;
 import com.kot.horizon.common.service.datetime.DateTimeService;
 import com.kot.horizon.image.exception.UnsupportedImageTypeException;
 import com.kot.horizon.image.exception.WrongImageSizeException;
 import com.kot.horizon.image.service.ImageService;
-import com.kot.horizon.tour.model.TourEntity;
-import com.kot.horizon.tour.service.TourService;
+import com.kot.horizon.tour.TourEntity;
+import com.kot.horizon.tour.TourService;
 
 @Service
 public class TourAPIService extends AbstractAPIService<TourEntity, TourRequest, TourResponse, TourService> {
@@ -61,8 +61,9 @@ public class TourAPIService extends AbstractAPIService<TourEntity, TourRequest, 
 	protected void copyProperties(TourRequest request, TourEntity entity) {
 		entity.setName(request.getName());
 		entity.setDescription(request.getDescription());
-		entity.setRate(entity.getRate());
+		entity.setRate(request.getRate());
 		entity.setEventDate(dateTimeService.toZonedDateTime(request.getEventDate()));
+		entity.setPrice(request.getPrice());
 	}
 
 	@Override

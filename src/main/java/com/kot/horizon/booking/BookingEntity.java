@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.architecture.model.BaseEntity;
-import com.kot.horizon.tour.model.TourEntity;
+import com.kot.horizon.tour.TourEntity;
 import com.kot.horizon.user.model.UserEntity;
 
 @Entity
