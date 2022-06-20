@@ -36,8 +36,14 @@ public class TourResponse implements AbstractResponse {
 	@ApiModelProperty(notes = "The start date of tour event")
 	private LocalDateTime eventDate;
 
+	@ApiModelProperty(notes= "Joined users to the tour")
+	private List<User> joinedUsers;
+
 	@ApiModelProperty(notes = "The price of the trip")
 	private double price;
+
+	@ApiModelProperty(notes = "The count of free places")
+	private int freePlacesCount;
 
 	@Override
 	public Long getId() {
@@ -112,6 +118,22 @@ public class TourResponse implements AbstractResponse {
 		this.price = price;
 	}
 
+	public List<User> getJoinedUsers() {
+		return joinedUsers;
+	}
+
+	public void setJoinedUsers(List<User> joinedUsers) {
+		this.joinedUsers = joinedUsers;
+	}
+
+	public int getFreePlacesCount() {
+		return freePlacesCount;
+	}
+
+	public void setFreePlacesCount(int freePlacesCount) {
+		this.freePlacesCount = freePlacesCount;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -130,6 +152,8 @@ public class TourResponse implements AbstractResponse {
 				.append(owner, that.owner)
 				.append(eventDate, that.eventDate)
 				.append(price, that.price)
+				.append(joinedUsers, that.joinedUsers)
+				.append(freePlacesCount, that.freePlacesCount)
 				.isEquals();
 	}
 
@@ -145,6 +169,8 @@ public class TourResponse implements AbstractResponse {
 				.append(owner)
 				.append(eventDate)
 				.append(price)
+				.append(joinedUsers)
+				.append(freePlacesCount)
 				.toHashCode();
 	}
 }

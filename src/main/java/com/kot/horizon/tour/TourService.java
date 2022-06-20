@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import com.kot.horizon.api.v1.tour.TourResponse;
 import com.kot.horizon.architecture.dao.AbstractDAO;
 import com.kot.horizon.architecture.repository.BaseCRUDRepository;
 import com.kot.horizon.architecture.service.AbstractService;
@@ -50,6 +51,14 @@ public class TourService extends AbstractService<TourEntity> {
 			setImageToTour(tour, image);
 		}
 		return update(tour);
+	}
+
+	public TourEntity joinTourist(Long tourId, Long touristId) {
+		TourEntity tour = getDAO().findById(tourId);
+		UserEntity userEntity = userService.findById(touristId);
+
+		tour.getTourists().add(userEntity);
+		return getDAO().save(tour);
 	}
 
 	private void setImageToTour(TourEntity tour, ImageEntity image) {

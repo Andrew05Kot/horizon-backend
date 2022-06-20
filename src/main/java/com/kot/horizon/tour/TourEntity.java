@@ -61,6 +61,15 @@ public class TourEntity implements BaseEntity {
 	@Column(name = "price", nullable = false)
 	private double price = 0;
 
+	@Column(name = "free_places_count", nullable = false)
+	private int freePlacesCount = 1;
+
+	@OneToMany
+	@JoinTable( name = "tour_tourist",
+			joinColumns = @JoinColumn(name = "tour_id", foreignKey = @ForeignKey(name = "fk_tour_tourist_to_tour")),
+			inverseJoinColumns = @JoinColumn(name = "tourist_id", foreignKey = @ForeignKey(name = "fk_tour_tourist_to_tourist")))
+	private List<UserEntity> tourists;
+
 	@Override
 	public Long getId() {
 		return id;
@@ -134,6 +143,26 @@ public class TourEntity implements BaseEntity {
 		this.price = price;
 	}
 
+	public List<UserEntity> getTourists() {
+		return tourists;
+	}
+
+	public void setTourists(List<UserEntity> tourists) {
+		this.tourists = tourists;
+	}
+
+	public void addTourist(UserEntity tourist) {
+		this.tourists.add(tourist);
+	}
+
+	public int getFreePlacesCount() {
+		return freePlacesCount;
+	}
+
+	public void setFreePlacesCount(int freePlacesCount) {
+		this.freePlacesCount = freePlacesCount;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -150,6 +179,7 @@ public class TourEntity implements BaseEntity {
 				.append(geoData, that.geoData)
 				.append(eventDate, that.eventDate)
 				.append(price, that.price)
+				.append(freePlacesCount, that.freePlacesCount)
 				.isEquals();
 	}
 
@@ -163,6 +193,7 @@ public class TourEntity implements BaseEntity {
 				.append(geoData)
 				.append(eventDate)
 				.append(price)
+				.append(freePlacesCount)
 				.toHashCode();
 	}
 
@@ -177,6 +208,7 @@ public class TourEntity implements BaseEntity {
 				", eventDate=" + eventDate +
 				", geoData=" + geoData +
 				", owner=" + owner +
+				", freePlacesCount=" + freePlacesCount +
 				'}';
 	}
 }
