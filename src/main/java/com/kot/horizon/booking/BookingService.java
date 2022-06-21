@@ -1,5 +1,6 @@
 package com.kot.horizon.booking;
 
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.kot.horizon.architecture.dao.AbstractDAO;
@@ -28,8 +29,9 @@ public class BookingService extends AbstractService<BookingEntity> {
 	}
 
 	@Override
+	@Transactional
 	protected void beforeUpdate(BookingEntity entity) {
-		if (entity.getLiked()) {
+		if (Boolean.TRUE.equals(entity.getLiked())) {
 			updateRate(entity, 3);
 		} else if (entity.getLiked() != null && !entity.getLiked()) {
 			updateRate(entity, -3);

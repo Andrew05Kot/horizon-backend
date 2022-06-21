@@ -50,6 +50,9 @@ public class TourMapper {
 		if (entity.getGeoData() != null) {
 			response.setGeoData(geoDataMapper.toDto(entity.getGeoData()));
 		}
+		if (entity.getTourists() != null) {
+			response.setJoinedUsers(entity.getTourists().stream().map(user -> userMapper.getResponseBean(user, null)).collect(Collectors.toList()));
+		}
 		response.setOwner(userMapper.getResponseBean(entity.getOwner(), null));
 		response.setPrice(entity.getPrice());
 		return response;

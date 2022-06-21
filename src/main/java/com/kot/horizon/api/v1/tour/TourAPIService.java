@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.kot.horizon.api.v1.general.AbstractAPIService;
-import com.kot.horizon.api.v1.tour.TourRequest;
-import com.kot.horizon.api.v1.tour.TourResponse;
-import com.kot.horizon.api.v1.tour.TourMapper;
 import com.kot.horizon.common.filtering.EntityFilterSpecificationsBuilder;
 import com.kot.horizon.common.filtering.tour.TourSpecificationBuilder;
 import com.kot.horizon.common.service.datetime.DateTimeService;
@@ -69,6 +66,10 @@ public class TourAPIService extends AbstractAPIService<TourEntity, TourRequest, 
 	@Override
 	protected TourResponse convertToResponseBean(TourEntity entity, Optional<String> expand) {
 		return mapper.toDto(entity);
+	}
+
+	public TourResponse joinTourist(Long tourId, Long touristId) {
+		return mapper.toDto(service.joinTourist(tourId, touristId));
 	}
 
 	private void removeImagesIfNeed(Optional<List<Long>> imageIdsToRemove) {

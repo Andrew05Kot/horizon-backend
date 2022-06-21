@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import com.kot.horizon.api.v1.general.AbstractAPIService;
 import com.kot.horizon.booking.BookingEntity;
 import com.kot.horizon.booking.BookingService;
+import com.kot.horizon.booking.BookingStatus;
 import com.kot.horizon.common.filtering.EntityFilterSpecificationsBuilder;
 import com.kot.horizon.common.filtering.booking.BookingSpecificationBuilder;
+import com.kot.horizon.tour.TourEntity;
 import com.kot.horizon.tour.TourService;
 import com.kot.horizon.user.service.UserService;
 
@@ -22,6 +24,18 @@ public class BookingAPIService extends AbstractAPIService<BookingEntity, Booking
 
 	@Autowired
 	private TourService tourService;
+
+	@Override
+	public BookingResponse update(Long id, BookingRequest request) {
+		BookingEntity bookingEntityFromDb = service.findById(id);
+		if (BookingStatus.ACCEPTED.equals(request.getStatus())
+				&& !BookingStatus.ACCEPTED.equals(bookingEntityFromDb.getStatus())) {
+			TourEntity tour = tourService.findById(request.getTourId());
+			tour.addTourist(userService.findById(request.getTouristId()));
+			tourService.update(tour);
+		}
+		return super.update(id, request);
+	}
 
 	@Override
 	protected void patch(Long id, BookingRequest request) {

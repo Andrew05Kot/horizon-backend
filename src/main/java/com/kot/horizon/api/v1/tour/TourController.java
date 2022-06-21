@@ -39,6 +39,16 @@ public class TourController extends AbstractController<TourEntity, TourRequest, 
 		return apiService.uploadAndSaveImages(files, tourId, imageIdsToRemove);
 	}
 
+	@PostMapping(value = "/{tourId}/join/{touristId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Join new Tourist")
+	@ResponseBody
+	public TourResponse joinTourist( @ApiParam(name = "tourId", value = "Identify number of tour", example = "12")
+									 @PathVariable(value = "tourId") Long tourId,
+									 @ApiParam(name = "touristId", value = "Identify number of tourist", example = "12")
+									 @PathVariable(value = "touristId") Long touristId) {
+		return apiService.joinTourist(tourId, touristId);
+	}
+
 	@Override
 	@ApiOperation(value = "Unsupported operation", hidden = true)
 	public void patch(Long id, TourRequest request) {

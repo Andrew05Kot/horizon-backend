@@ -36,6 +36,9 @@ public class TourRequest implements AbstractRequest {
 	@ApiModelProperty(notes = "The price of the trip")
 	private double price;
 
+	@ApiModelProperty(notes = "The count of free places")
+	private int freePlacesCount;
+
 	public String getName() {
 		return name;
 	}
@@ -84,6 +87,14 @@ public class TourRequest implements AbstractRequest {
 		this.price = price;
 	}
 
+	public int getFreePlacesCount() {
+		return freePlacesCount;
+	}
+
+	public void setFreePlacesCount(int freePlacesCount) {
+		this.freePlacesCount = freePlacesCount;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -99,6 +110,7 @@ public class TourRequest implements AbstractRequest {
 				.append(geoData, that.geoData)
 				.append(eventDate, that.eventDate)
 				.append(price, that.price)
+				.append(freePlacesCount, that.freePlacesCount)
 				.isEquals();
 	}
 
@@ -111,6 +123,7 @@ public class TourRequest implements AbstractRequest {
 				.append(geoData)
 				.append(eventDate)
 				.append(price)
+				.append(freePlacesCount)
 				.toHashCode();
 	}
 }
