@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import com.sun.istack.NotNull;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.kot.horizon.architecture.model.BaseEntity;
@@ -26,14 +27,17 @@ public class BookingEntity implements BaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "tour_id")
+	@NotNull
 	private TourEntity tour;
 
 	@ManyToOne
 	@JoinColumn(name = "tourist_id")
+	@NotNull
 	private UserEntity tourist;
 
 	@Column(name = "status", nullable = false)
 	@Enumerated(EnumType.STRING)
+	@NotNull
 	private BookingStatus status;
 
 	@Column(name = "liked")

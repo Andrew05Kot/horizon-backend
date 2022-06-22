@@ -1,8 +1,8 @@
-package com.kot.horizon.tour;
+package com.kot.horizon.common;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -15,13 +15,11 @@ import static org.mockito.Mockito.when;
 import java.util.Map;
 import java.util.function.Consumer;
 import javax.validation.ConstraintViolationException;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.test.annotation.DirtiesContext;
-import com.kot.horizon.TestsDetails;
 import com.kot.horizon.architecture.dao.AbstractDAO;
 import com.kot.horizon.architecture.model.BaseEntity;
 import com.kot.horizon.architecture.service.AbstractService;
@@ -100,7 +98,7 @@ public abstract class AbstractServiceTest<
 		Exception exception = assertThrows(AccessDeniedException.class, () -> service.update(entity));
 
 		assertTrue(exception.getMessage().contains("You don`t have permission!"));
-		verify(getDao(), never()).save( any() );
+		verify(getDao(), never()).save(any());
 	}
 
 	protected abstract Map<Consumer<Entity>, String> getNonValidValuesTestParameters();
@@ -111,6 +109,6 @@ public abstract class AbstractServiceTest<
 
 	protected Specification<Entity> getSpecification(String key, Object value) {
 		return new EqualingSpecification<>(
-				new SearchCriteria( key, FilteringOperation.EQUAL, value ) );
+				new SearchCriteria(key, FilteringOperation.EQUAL, value));
 	}
 }

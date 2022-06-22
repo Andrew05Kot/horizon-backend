@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import com.kot.horizon.api.v1.tour.TourResponse;
 import com.kot.horizon.architecture.dao.AbstractDAO;
 import com.kot.horizon.architecture.repository.BaseCRUDRepository;
 import com.kot.horizon.architecture.service.AbstractService;
@@ -12,8 +11,6 @@ import com.kot.horizon.image.exception.UnsupportedImageTypeException;
 import com.kot.horizon.image.exception.WrongImageSizeException;
 import com.kot.horizon.image.model.ImageEntity;
 import com.kot.horizon.image.service.ImageService;
-import com.kot.horizon.tour.TourDao;
-import com.kot.horizon.tour.TourEntity;
 import com.kot.horizon.user.model.UserEntity;
 import com.kot.horizon.user.service.CurrentUserService;
 import com.kot.horizon.user.service.UserService;
@@ -46,7 +43,7 @@ public class TourService extends AbstractService<TourEntity> {
 
 	public TourEntity createAndSaveImages(Long tourId, MultipartFile[] files) throws UnsupportedImageTypeException, WrongImageSizeException {
 		TourEntity tour = findById(tourId);
-		for (MultipartFile file: files) {
+		for (MultipartFile file : files) {
 			ImageEntity image = imageService.saveImage(file);
 			setImageToTour(tour, image);
 		}
