@@ -8,14 +8,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.annotation.DirtiesContext;
 import com.kot.horizon.UserBuilder;
 import com.kot.horizon.common.AbstractServiceTest;
 import com.kot.horizon.user.model.UserEntity;
 import com.kot.horizon.user.model.UserRole;
 import com.kot.horizon.user.service.UserService;
 
-@DirtiesContext
 @ExtendWith(MockitoExtension.class)
 class BookingServiceTest extends AbstractServiceTest<BookingEntity, BookingService, BookingDao> {
 

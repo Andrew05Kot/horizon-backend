@@ -1,0 +1,26 @@
+com:
+  kot:
+    horizon:
+      image:
+        minSideSize: 300
+        formats: image/png,image/jpeg,image/svg,image/svg+xml
+        maxImageSize: 5242880 # equals to 5 * 1024 * 1024
+        folderName: /images/
+spring:
+  main:
+    lazy-initialization: 'true'
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: '142314987228072'
+            client-secret: 516cb045160df115dd2d28d77d2f5b29
+  jpa:
+    properties:
+      hibernate:
+        format_sql: 'true'
+  profiles:
+    include: h2-test,dev-cred
+log4j:
+  configurationFile: log4j2-test.xml
