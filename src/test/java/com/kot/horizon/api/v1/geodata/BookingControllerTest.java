@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import org.apache.commons.lang3.tuple.Pair;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Sort;
@@ -23,6 +24,7 @@ import com.kot.horizon.common.filtering.booking.BookingSpecificationBuilder;
 import com.kot.horizon.geodata.GeoDataEntity;
 import com.kot.horizon.geodata.GeoDataService;
 import com.kot.horizon.user.model.UserEntity;
+import com.kot.horizon.user.model.UserRole;
 
 public class BookingControllerTest extends AbstractControllerTest<
 		BookingEntity,
@@ -41,6 +43,12 @@ public class BookingControllerTest extends AbstractControllerTest<
 	private UserMapper userMapper;
 
 	private final BookingBuilder bookingBuilder = new BookingBuilder();
+
+	@BeforeEach
+	public void init() {
+		UserEntity owner = userBuilder.setRole(UserRole.ROLE_USER).build();
+		loginUser(owner);
+	}
 
 	@Override
 	protected BookingEntity getNewEntityForUser(UserEntity user) {
