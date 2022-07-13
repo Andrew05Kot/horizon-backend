@@ -1,0 +1,2 @@
+ALTER TABLE booking
+	ADD COLUMN liked boolean DEFAULT NULL;

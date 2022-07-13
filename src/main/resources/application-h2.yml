@@ -1,0 +1,17 @@
+spring:
+  flyway:
+    enabled: false
+  h2:
+    console:
+      enabled: true
+  datasource:
+    password:
+    driver-class-name: org.h2.Driver
+    username: horizon_owner
+    url: jdbc:h2:~/horizon-95536124cbfe0fc90feb034be9cf660bad18038d/H2A;DB_CLOSE_ON_EXIT=FALSE
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create

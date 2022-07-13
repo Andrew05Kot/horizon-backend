@@ -1,0 +1,62 @@
+com:
+  kot:
+    horizon:
+      image:
+        minSideSize: 300
+        formats: image/png,image/jpeg
+        maxImageSize: 5242880 # equals to 5 * 1024 * 1024
+        folderName: /images/
+server:
+  ssl:
+    keyAlias: tomcat
+    key-store-password: '123456'
+    keyStoreType: PKCS12
+    enabled: 'true'
+    key-store: keystore.p12
+  port: '8080'
+spring:
+  config:
+    use-legacy-processing: true
+  profiles:
+    active: "@spring.profiles.active@"
+    include:
+      - mail
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-circular-references: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            clientId: '414533696483573'
+            clientSecret: '7a5be519d929f37ed5aeb278e68a1f69'
+          google:
+            clientId: '944658581474-jsig0f39t4hk6q9d3l9jbick65b6afq7.apps.googleusercontent.com'
+            clientSecret: 'd6iu76Jh3dah-qkt3YaOeeRN'
+            scope:
+              - profile
+              - email
+        provider:
+          facebook:
+            user-info-uri: https://graph.facebook.com/me?fields=id,name,email
+app:
+  auth:
+    tokenExpirationMsec: '864000000'
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+  oauth2:
+    authorizedRedirectUris: http://localhost:4200/auth
+
+horizon:
+  oauth2:
+    expirationMillis: 1200000
+    refreshSec: 604800
+    shortLivedMillis: 120000
+    defaultSuccessUrl: 'http://localhost:4200/auth'
+    defaultFailedUrl: 'http://localhost:4200/authorization-error'
