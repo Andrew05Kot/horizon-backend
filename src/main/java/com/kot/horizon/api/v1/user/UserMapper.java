@@ -27,6 +27,7 @@ public class UserMapper extends AbstractConverter<UserEntity, User> {
 		user.setPhoneNumber(userEntity.getPhoneNumber());
 		user.setBirthDate(userEntity.getBirthDate());
 		user.setAboutMe(userEntity.getAboutMe());
+		user.setRate(userEntity.getRate());
 		if (userEntity.getImage() != null) {
 			user.setImage(mapper.toDto(userEntity.getImage()));
 		}

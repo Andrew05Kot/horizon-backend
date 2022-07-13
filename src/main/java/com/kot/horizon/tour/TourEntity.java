@@ -1,9 +1,15 @@
 package com.kot.horizon.tour;
 
 import java.time.ZonedDateTime;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -12,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -63,6 +70,12 @@ public class TourEntity implements BaseEntity {
 
 	@Column(name = "free_places_count", nullable = false)
 	private int freePlacesCount = 1;
+
+	@ElementCollection
+	@CollectionTable(name="hashtag")
+	@MapKeyColumn(name = "hashtag_key")
+	@Column(name = "hashtag")
+	public Map<String, String> hashtags = new HashMap<>();
 
 	@OneToMany
 	@JoinTable( name = "tour_tourist",

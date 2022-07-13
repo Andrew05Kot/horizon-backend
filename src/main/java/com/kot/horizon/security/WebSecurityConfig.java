@@ -7,6 +7,7 @@ import java.util.Arrays;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -50,6 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private CustomUserDetailsService userDetailsService;
 	@Autowired
 	private JwtAuthenticationProvider jwtAuthenticationProvider;
+	@Autowired
+	private Environment environment;
 
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -103,6 +106,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.addFilterBefore(new JwtTokenAuthenticationFilter(authenticationManagerBean()),
 				UsernamePasswordAuthenticationFilter.class);
+
+		if (Arrays.asList(environment.getActiveProfiles()).contains("h2")) {
+			http.csrf().disable();
+			http.headers().frameOptions().disable();
+		}
 	}
 
 	@Bean
