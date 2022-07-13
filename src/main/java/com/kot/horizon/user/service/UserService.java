@@ -16,8 +16,6 @@ import com.kot.horizon.image.exception.WrongImageSizeException;
 import com.kot.horizon.image.service.ImageService;
 import com.kot.horizon.user.dao.UserDAO;
 import com.kot.horizon.common.exception.LocalizedException;
-import com.kot.horizon.photo.model.PhotoEntity;
-import com.kot.horizon.photo.model.ShortPhotoEntity;
 import com.kot.horizon.user.model.Language;
 import com.kot.horizon.user.model.UserEntity;
 import com.kot.horizon.user.model.UserPermission;
@@ -100,23 +98,6 @@ public class UserService extends AbstractService<UserEntity> {
 	private boolean isUserRoleDowngrading(UserRole prevRole, UserRole newRole) {
 		return ( prevRole.equals(UserRole.ROLE_ADMIN) && ( newRole.equals(UserRole.ROLE_USER) || newRole.equals(UserRole.ROLE_SUB_ADMIN) )
 				|| ( prevRole.equals(UserRole.ROLE_SUB_ADMIN) && newRole.equals(UserRole.ROLE_USER) ) );
-	}
-
-
-	public void updatePhotoForNewUser(UserEntity user, PhotoEntity photo) {
-
-		if (currentUserService.getCurrentUser() != null) {
-			throw new AccessDeniedException("User tried create an image for other user | userId "
-					+ currentUserService.getCurrentUser().getId());
-		}
-
-		ShortPhotoEntity shortPhotoEntity = new ShortPhotoEntity();
-		shortPhotoEntity.setId(photo.getId());
-		shortPhotoEntity.setMimeType(photo.getMimeType());
-//		shortPhotoEntity.setUser(photo.getUser());
-
-		userDAO.save(user);
-
 	}
 
 	private Specification<UserEntity> isUserHasBirthdayInAMonth() {
