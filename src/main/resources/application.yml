@@ -35,11 +35,11 @@ spring:
       client:
         registration:
           facebook:
-            clientId: '414533696483573'
-            clientSecret: '7a5be519d929f37ed5aeb278e68a1f69'
+            clientId: ${FACEBOOK_CLIENT_ID}
+            clientSecret: ${FACEBOOK_CLIENT_SECRET}
           google:
-            clientId: '944658581474-jsig0f39t4hk6q9d3l9jbick65b6afq7.apps.googleusercontent.com'
-            clientSecret: 'd6iu76Jh3dah-qkt3YaOeeRN'
+            clientId: ${GOOGLE_CLIENT_ID}
+            clientSecret: ${GOOGLE_CLIENT_SECRET}
             scope:
               - profile
               - email
