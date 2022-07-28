@@ -8,7 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import com.kot.horizon.UserBuilder;
+import com.kot.horizon.common.UserBuilder;
 import com.kot.horizon.common.AbstractServiceTest;
 import com.kot.horizon.user.model.UserEntity;
 import com.kot.horizon.user.model.UserRole;

@@ -1,4 +1,4 @@
-package com.kot.horizon.localization;
+package com.kot.horizon.common.localization;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,17 +11,16 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 @Configuration
 public class LocaleConfiguration implements WebMvcConfigurer {
 
-    /**local configurations get locale from current operation system**/
-    @Bean
-    public LocaleResolver localeResolver() {
-        return new SessionLocaleResolver();
-    }
+	@Bean
+	public LocaleResolver localeResolver() {
+		return new SessionLocaleResolver();
+	}
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-        localeChangeInterceptor.setParamName("language");
-        registry.addInterceptor(localeChangeInterceptor);
-    }
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+		localeChangeInterceptor.setParamName("language");
+		registry.addInterceptor(localeChangeInterceptor);
+	}
 
 }
