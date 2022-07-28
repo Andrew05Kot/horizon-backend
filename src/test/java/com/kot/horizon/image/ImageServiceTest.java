@@ -19,7 +19,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.multipart.MultipartFile;
-import com.kot.horizon.UserBuilder;
+import com.kot.horizon.common.UserBuilder;
 import com.kot.horizon.common.TestsDetails;
 import com.kot.horizon.image.dao.ImageDao;
 import com.kot.horizon.image.exception.UnsupportedImageTypeException;

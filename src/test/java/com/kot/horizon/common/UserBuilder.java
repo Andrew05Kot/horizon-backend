@@ -1,4 +1,4 @@
-package com.kot.horizon;
+package com.kot.horizon.common;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

@@ -25,15 +25,15 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.server.ResponseStatusException;
 import com.kot.horizon.common.exception.LocalizedException;
-import com.kot.horizon.localization.LocalizationService;
+import com.kot.horizon.common.localization.LocalizationService;
 
 @ControllerAdvice
 public class APIExceptionsHandler {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(APIExceptionsHandler.class);
-	
+
 	@Autowired
-	private LocalizationService i18n;
+	private LocalizationService localizationService;
 
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
 	public ResponseEntity<ExceptionsMessageWrapper> handleUnsupportedMethods(
@@ -55,7 +55,7 @@ public class APIExceptionsHandler {
 	}
 
 	@ExceptionHandler(AccessDeniedException.class)
-	public ResponseEntity<ExceptionsMessageWrapper> handleAccessDeniedException (AccessDeniedException ex) {
+	public ResponseEntity<ExceptionsMessageWrapper> handleAccessDeniedException(AccessDeniedException ex) {
 
 		ExceptionsMessageWrapper message = new ExceptionsMessageWrapper(ex.getMessage());
 
@@ -66,7 +66,7 @@ public class APIExceptionsHandler {
 	@ExceptionHandler(UnsupportedOperationException.class)
 	public ResponseEntity<ExceptionsMessageWrapper> handleUnsupportedOperationException(UnsupportedOperationException ex) {
 
-		ExceptionsMessageWrapper message = new ExceptionsMessageWrapper( "The operation is not supported" );
+		ExceptionsMessageWrapper message = new ExceptionsMessageWrapper("The operation is not supported");
 
 		LOGGER.error(message.getReason(), ex);
 		return new ResponseEntity<>(message, HttpStatus.SERVICE_UNAVAILABLE);
@@ -77,21 +77,21 @@ public class APIExceptionsHandler {
 			MethodArgumentNotValidException ex) {
 
 		String message = ex.getBindingResult().getAllErrors()
-			.stream().map( this :: getMessageFromObjectError )
-			.collect( Collectors.joining( ", " ) );
+				.stream().map(this::getMessageFromObjectError)
+				.collect(Collectors.joining(", "));
 
-		ExceptionsMessageWrapper messageWrapper = new ExceptionsMessageWrapper( message );
+		ExceptionsMessageWrapper messageWrapper = new ExceptionsMessageWrapper(message);
 
 		LOGGER.error(messageWrapper.getReason(), ex);
 		return new ResponseEntity<>(messageWrapper, HttpStatus.BAD_REQUEST);
 
 	}
 
-	private String getMessageFromObjectError( ObjectError objectError ) {
+	private String getMessageFromObjectError(ObjectError objectError) {
 		StringBuilder stringBuilder = new StringBuilder(50);
 		stringBuilder.append("'");
-		if( objectError instanceof FieldError ) {
-			FieldError fieldError = ( FieldError ) objectError;
+		if (objectError instanceof FieldError) {
+			FieldError fieldError = (FieldError) objectError;
 			stringBuilder.append(fieldError.getField());
 		} else {
 			stringBuilder.append(objectError.getObjectName());
@@ -105,10 +105,10 @@ public class APIExceptionsHandler {
 			ConstraintViolationException ex) {
 
 		String message = ex.getConstraintViolations()
-				.stream().map( ConstraintViolation :: getMessage )
-				.collect( Collectors.joining( ", " ) );
+				.stream().map(ConstraintViolation::getMessage)
+				.collect(Collectors.joining(", "));
 
-		ExceptionsMessageWrapper messageWrapper = new ExceptionsMessageWrapper( message );
+		ExceptionsMessageWrapper messageWrapper = new ExceptionsMessageWrapper(message);
 
 		LOGGER.error(messageWrapper.getReason(), ex);
 		return new ResponseEntity<>(messageWrapper, HttpStatus.BAD_REQUEST);
@@ -156,13 +156,13 @@ public class APIExceptionsHandler {
 
 	@ExceptionHandler(BindException.class)
 	public ResponseEntity<ExceptionsMessageWrapper> handleBindException(BindException ex) {
-		if ( !CollectionUtils.isEmpty( ex.getBindingResult().getAllErrors() ) ) {
+		if (!CollectionUtils.isEmpty(ex.getBindingResult().getAllErrors())) {
 			String message = ex.getBindingResult().getAllErrors().stream()
-				.map( FieldError.class :: cast )
-				.map( fieldError -> fieldError.getField() + " : " + fieldError.getDefaultMessage())
-				.collect( Collectors.joining( ", " ) );
-			if ( !message.isEmpty() ) {
-				ExceptionsMessageWrapper messageWrapper = new ExceptionsMessageWrapper( message );
+					.map(FieldError.class::cast)
+					.map(fieldError -> fieldError.getField() + " : " + fieldError.getDefaultMessage())
+					.collect(Collectors.joining(", "));
+			if (!message.isEmpty()) {
+				ExceptionsMessageWrapper messageWrapper = new ExceptionsMessageWrapper(message);
 				LOGGER.error(messageWrapper.getReason(), ex);
 				return new ResponseEntity<>(messageWrapper, HttpStatus.BAD_REQUEST);
 			}
@@ -171,25 +171,25 @@ public class APIExceptionsHandler {
 	}
 
 	@ExceptionHandler(MissingServletRequestPartException.class)
-	public ResponseEntity< ExceptionsMessageWrapper > handleMissingServletRequestPartException(
-			MissingServletRequestPartException exception ) {
-		ExceptionsMessageWrapper message = new ExceptionsMessageWrapper( exception.getMessage() );
+	public ResponseEntity<ExceptionsMessageWrapper> handleMissingServletRequestPartException(
+			MissingServletRequestPartException exception) {
+		ExceptionsMessageWrapper message = new ExceptionsMessageWrapper(exception.getMessage());
 
 		LOGGER.error(message.getReason(), exception);
-		return new ResponseEntity<>( message, HttpStatus.BAD_REQUEST );
+		return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(MissingServletRequestParameterException.class)
-	public ResponseEntity< ExceptionsMessageWrapper > handleMissingServletRequestParameterException(
-			MissingServletRequestParameterException exception ) {
-		ExceptionsMessageWrapper message = new ExceptionsMessageWrapper( exception.getMessage() );
+	public ResponseEntity<ExceptionsMessageWrapper> handleMissingServletRequestParameterException(
+			MissingServletRequestParameterException exception) {
+		ExceptionsMessageWrapper message = new ExceptionsMessageWrapper(exception.getMessage());
 
 		LOGGER.error(message.getReason(), exception);
-		return new ResponseEntity<>( message, HttpStatus.BAD_REQUEST );
+		return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ExceptionsMessageWrapper> handleInternalExceptions( Exception ex) {
+	public ResponseEntity<ExceptionsMessageWrapper> handleInternalExceptions(Exception ex) {
 
 		ExceptionsMessageWrapper message = new ExceptionsMessageWrapper("Internal Server Error");
 
@@ -204,7 +204,7 @@ public class APIExceptionsHandler {
 	}
 
 	private LocalizedExceptionResponse buildLocalizedExceptionResponse(LocalizedException ex) {
-		return new LocalizedExceptionResponse(ex.getReason(), i18n.translate( ex.getContentKey() ) );
+		return new LocalizedExceptionResponse(ex.getReason(), localizationService.translate(ex.getContentKey()));
 	}
 
 }

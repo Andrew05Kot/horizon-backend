@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ActiveProfiles;
-import com.kot.horizon.UserBuilder;
 import com.kot.horizon.security.jwt.JwtAuthenticationToken;
 import com.kot.horizon.security.jwt.JwtService;
 import com.kot.horizon.user.model.UserEntity;

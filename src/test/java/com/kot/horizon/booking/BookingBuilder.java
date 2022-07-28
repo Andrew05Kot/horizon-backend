@@ -1,7 +1,7 @@
 package com.kot.horizon.booking;
 
 import java.util.concurrent.ThreadLocalRandom;
-import com.kot.horizon.UserBuilder;
+import com.kot.horizon.common.UserBuilder;
 import com.kot.horizon.tour.TourBuilder;
 import com.kot.horizon.tour.TourEntity;
 import com.kot.horizon.user.model.UserEntity;
